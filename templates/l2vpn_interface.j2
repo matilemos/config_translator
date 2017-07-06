@@ -1,0 +1,6 @@
+set interfaces ae{{sco}} unit {{vlan}} description {{description}}
+set interfaces ae{{sco}} unit {{vlan}} encapsulation vlan-vpls
+set interfaces ae{{sco}} unit {{vlan}} vlan-id {{vlan}}
+
+set routing-instances {vpn} interface ae{{sco}}.{{vlan}}
+set routing-instances {vpn} protocols vpls site SITE interface ae{{sco}}.{{vlan}}

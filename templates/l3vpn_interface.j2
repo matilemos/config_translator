@@ -1,0 +1,8 @@
+set interfaces ae{{sco}} unit {{vlan}} description {{description}}
+set interfaces ae{{sco}} unit {{vlan}} vlan-id {{vlan}}
+set interfaces ae{{sco}} unit {{vlan}} family inet address {{ip_a}}/30
+set routing-instances {{vpn}} interface ae{{sco}}.{{vlan}}
+set routing-instances {{vpn}} protocols bgp group CPE-{{peer_as}} type external
+set routing-instances {{vpn}} protocols bgp group CPE-{{peer_as}} description {{description}}
+set routing-instances {{vpn}} protocols bgp group CPE-{{peer_as}} peer-as {{peer_as}}
+set routing-instances {{vpn}} protocols bgp group CPE-{{peer_as}} neighbor {{ip_b}}

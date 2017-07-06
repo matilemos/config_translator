@@ -1,0 +1,9 @@
+set interfaces ae0 unit {{vlan}} description Conexion-L3-{{vpn}}
+set interfaces ae0 unit {{vlan}} vlan-id {{vlan}}
+set interfaces ae0 unit {{vlan}} family inet address {{ip_a}}/30
+
+set routing-instances {{vpn}} interface ae0.{{vlan}}
+set routing-instances {{vpn}} route-distinguisher 10.100.104.1:{{vpn_id}}
+set routing-instances {{vpn}} vrf-target target:64600:{{vpn_id}}
+set routing-instances {{vpn}} protocols bgp group CV-10481 peer-as 10481
+set routing-instances {{vpn}} protocols bgp group CV-10481 neighbor {{ip_b}}

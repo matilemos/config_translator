@@ -1,0 +1,6 @@
+set interfaces ae{{sco}} unit {{vlan}} description {{description}}
+set interfaces ae{{sco}} unit {{vlan}} vlan-id {{vlan}}
+set interfaces ae{{sco}} unit {{vlan}} family inet address {{ip_a}}/30
+
+set routing-instances INTERNET interface ae{{sco}}.{{vlan}}
+set routing-instances INTERNET routing-options static route {{public_prefix}} next-hop {{ip_b}} tag 1
