@@ -3,7 +3,7 @@ set interfaces ae0 unit {{vlan}} vlan-id {{vlan}}
 set interfaces ae0 unit {{vlan}} encapsulation vlan-vpls
 set interfaces ae0 unit {{vlan}} family vpls
 
-set routing-instances vpn interface ae0.{{vlan}}
-set routing-instances vpn route-distinguisher {{loopback_rbb}}:{{vpn_id}}
-set routing-instances vpn vrf-target target:64600:{{vpn_id}}
-set routing-instances vpn protocols vpls site SITE interface ae0.{{vlan}}
+set routing-instances {{vpn}} interface ae0.{{vlan}}
+set routing-instances {{vpn}} route-distinguisher {{loopback}}:{{vpn_id}}
+set routing-instances {{vpn}} vrf-target target:64600:{{vpn_id}}
+set routing-instances {{vpn}} protocols vpls site SITE interface ae0.{{vlan}}

@@ -17,13 +17,15 @@ f_sco= 'files/sco.txt'
 
 sco = {}
 sco_interfaces = []
-interfaces_list = []
-pending_list = []
 
 irs_list = []
 vpls_list = []
 bridge_list = []
 vrf_list = []
+
+ifaces_list = {'all': [],'pending': [],'irs': [], 'vrf': [],'vpls': [],'bridge': [], 'trunk':[]}
+
+
 
 def main():
     
@@ -47,33 +49,45 @@ def main():
             if_name=interface['name']['data']
             for unit in interface['unit']:
                 interface_name = if_name + "." + str(unit['name']['data'])
-                interfaces_list.append(interface_name)
-                pending_list.append(interface_name)
+                ifaces_list['all'].append(interface_name)
+                ifaces_list['pending'].append(interface_name)
 
-                if ('encapsulation' in unit.keys() and unit['encapsulation'][0]['data'] == 'vlan-vpls'):  # Identifico VPLS
-                   vpls_list.append(interface_name)
+                if ('encapsulation' in unit.keys() and 
+                    unit['encapsulation'][0]['data'] == 'vlan-vpls'):  # Identifico VPLS
+                   
+                   ifaces_list['vpls'].append(interface_name)
+                   ifaces_list['pending'].remove(interface_name)
 
-                if ('encapsulation' in unit.keys() and unit['encapsulation'][0]['data'] == 'vlan-bridge'):  # Identifico bridges
-                   bridge_list.append(interface_name)
+                if ('encapsulation' in unit.keys() and 
+                    unit['encapsulation'][0]['data'] == 'vlan-bridge'):  # Identifico bridges
+                   
+                   ifaces_list['bridge'].append(interface_name)
+                   ifaces_list['pending'].remove(interface_name)
 
-                if ('family' in unit.keys() and 'inet' in unit['family'][0].keys() and 'address' in unit['family'][0]['inet'][0].keys()):
-                    # Decido si es IRS o VRF
-
-                    irs_list.append(interface_name)
+                if ('family' in unit.keys() and 
+                    'inet' in unit['family'][0].keys() and 
+                    'address' in unit['family'][0]['inet'][0].keys()):
+                    
+                    ifaces_list['irs'].append(interface_name)
+                    ifaces_list['pending'].remove(interface_name)
 
                     for instance in nodoc['routing-instances'][0]['instance']:
                         if ('interface' in instance.keys()):
                             for iface in instance['interface']:
-                                if (interface_name == iface):
-                                    irs_list.remove(interface_name)
-                                    vrf_list.append(interface_name)
+                                if (interface_name == iface['name']['data']):
 
-
-        pprint(irs_list)
-        pprint(vrf_list)
-
-
-
+                                    ifaces_list['irs'].remove(interface_name)
+                                    ifaces_list['vrf'].append(interface_name)
+                
+                if ('family' in unit.keys() and 
+                    'bridge' in unit['family'][0].keys() and 
+                    'interface-mode' in unit['family'][0]['bridge'][0].keys() and
+                    unit['family'][0]['bridge'][0]['interface-mode'][0]['data'] == 'trunk'):
+                    
+                    ifaces_list['trunk'].append(interface_name)
+                    ifaces_list['pending'].remove(interface_name)
+                    
+    
         #        
         #        if roa_interfaces[interface][unit]['family'] == 'inet':
         #            irs_list.append(interface_name)
