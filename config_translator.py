@@ -24,7 +24,7 @@ bridge_list = []
 vrf_list = []
 
 ifaces_list = {'all': [],'pending': [],'irs': [], 'vrf': [],'vpls': [],'bridge': [], 'trunk':[]}
-
+instances_list = {'vrf': [], 'vpls': [], 'bridge':[]}
 
 
 def main():
@@ -42,7 +42,7 @@ def main():
     nodoc = nodoc['configuration'][0]
 
 
-    # Armo listado de interfaces a migrar:
+    # Armo listado de interfaces e instancias a migrar:
 
     for interface in nodoc['interfaces'][0]['interface']: # Recorro las interfaz del Nodo C que corresponden a SCOs
         if(interface['name']['data']) in sco_interfaces:  # Selecciono unicamente las que vamos a migrar
@@ -58,12 +58,29 @@ def main():
                    ifaces_list['vpls'].append(interface_name)
                    ifaces_list['pending'].remove(interface_name)
 
+                   for instance in nodoc['routing-instances'][0]['instance']:
+                        if ('interface' in instance.keys()):
+                            for iface in instance['interface']:
+                                if (interface_name == iface['name']['data']):
+
+                                    if (instance['name']['data'] not in instances_list['vpls']):
+                                        instances_list['vpls'].append(instance['name']['data'])
+
                 if ('encapsulation' in unit.keys() and 
                     unit['encapsulation'][0]['data'] == 'vlan-bridge'):  # Identifico bridges
                    
-                   ifaces_list['bridge'].append(interface_name)
-                   ifaces_list['pending'].remove(interface_name)
+                    ifaces_list['bridge'].append(interface_name)
+                    ifaces_list['pending'].remove(interface_name)
 
+                    for domain in nodoc['bridge-domains'][0]['domain']:
+                        if ('interface' in domain.keys()):
+                            for iface in domain['interface']:
+                                if (interface_name == iface['name']['data']):
+
+                                    if (domain['name']['data'] not in instances_list['bridge']):
+                                        instances_list['bridge'].append(domain['name']['data'])
+
+                    
                 if ('family' in unit.keys() and 
                     'inet' in unit['family'][0].keys() and 
                     'address' in unit['family'][0]['inet'][0].keys()):
@@ -78,6 +95,8 @@ def main():
 
                                     ifaces_list['irs'].remove(interface_name)
                                     ifaces_list['vrf'].append(interface_name)
+                                    if (instance['name']['data'] not in instances_list['vrf']):
+                                        instances_list['vrf'].append(instance['name']['data'])
                 
                 if ('family' in unit.keys() and 
                     'bridge' in unit['family'][0].keys() and 
@@ -87,7 +106,7 @@ def main():
                     ifaces_list['trunk'].append(interface_name)
                     ifaces_list['pending'].remove(interface_name)
                     
-    
+    pprint (instances_list)
         #        
         #        if roa_interfaces[interface][unit]['family'] == 'inet':
         #            irs_list.append(interface_name)
