@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Migrador de nodo completo
+# Migrador de nodo completo a partir de Json
 
 
 import sys
@@ -13,15 +13,13 @@ f_rac= 'files/rac.json'
 f_sac= 'files/sac.json'
 f_rbb= 'files/rbb.json'
 f_sco= 'files/sco.txt'
+f_vpns= 'files/vpns.txt'
 
 
 sco = {}
 sco_interfaces = []
 
-irs_list = []
-vpls_list = []
-bridge_list = []
-vrf_list = []
+vpns = {}
 
 ifaces_list = {'all': [],'pending': [],'irs': [], 'vrf': [],'vpls': [],'bridge': [], 'trunk':[]}
 instances_list = {'vrf': [], 'vpls': [], 'bridge':[]}
@@ -40,6 +38,15 @@ def main():
 
     nodoc = json.load(codecs.open(f_nodoc, 'r', 'utf-8-sig'))
     nodoc = nodoc['configuration'][0]
+
+    with open(f_vpns) as f:  # Lectura de configuracion VPNs
+        for line in f.readlines():
+            if line.startswith('#'):
+                continue
+            l = line.split("\t")
+            vpns[l[2].rstrip()] = {'id_cv': l[1], 'id_fc':l[0]}
+
+
 
 
     # Armo listado de interfaces e instancias a migrar:
@@ -105,8 +112,47 @@ def main():
                     
                     ifaces_list['trunk'].append(interface_name)
                     ifaces_list['pending'].remove(interface_name)
-                    
-    pprint (instances_list)
+    
+
+    #pprint (vpns)
+
+    # identificacion de VPLS-id
+
+    for vpls in instances_list['vpls']:
+        pprint(vpls)
+        for instance in nodoc['routing-instances'][0]['instance']:
+            if (vpls == instance['name']['data']):
+                id_cv = instance['protocols'][0]['vpls'][0]['vpls-id'][0]['data']
+                pprint(id_cv)
+
+
+    # Identificacion de vrf-id
+    for vrf in instances_list['vrf']:
+        for instance in nodoc['routing-instances'][0]['instance']:
+            if (vrf == instance['name']['data']):
+                if ('vrf-target' in instance and 'vrf-import' not in instance):
+                    id_cv = instance['vrf-target'][0]['community'][0]['data'] 
+                    pprint(id_cv)
+
+                if ('vrf-import' in instance):
+                    vrf_imp = instance['vrf-import'][0]['data']
+                    for policy in nodoc['policy-options'][0]['policy-statement']:
+                        if instance['vrf-import'][0]['data'] == policy['name']['data']:
+                            for term in policy['term']:
+                                if ('from' in term and
+                                    'community' in term['from'][0]):
+                                    for community in term['from'][0]['community']:
+                                        if community['data'] != 'GESTION' and community['data'] != 'Gestion-FC-Import':
+                                            for item in nodoc['policy-options'][0]['community']:
+                                                if community['data'] == item['name']['data']:
+                                                    for member in item['members']:
+                                                        id_cv= member['data']
+                                                        pprint(vrf)
+                                                        pprint (id_cv)
+
+
+                
+
         #        
         #        if roa_interfaces[interface][unit]['family'] == 'inet':
         #            irs_list.append(interface_name)
