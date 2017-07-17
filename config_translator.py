@@ -5,8 +5,10 @@
 import sys
 import json
 import codecs
-from jinja2 import Template
+import jinja2
 from pprint import pprint
+from os import listdir
+from os import remove
 
 f_nodoc= 'files/nodoc.json'
 f_rac= 'files/rac.json'
@@ -17,29 +19,38 @@ f_vpns= 'files/vpns.txt'
 
 
 sco = {}
-sco_interfaces = []
 
 vpns = {}
 
-ifaces_list = {'all': [],'pending': [],'irs': [], 'vrf': [],'vpls': [],'bridge': [], 'trunk':[]}
-instances_list = {'vrf': [], 'vpls': [], 'bridge':[]}
+ifaces_list = {'all': [],'pending': [], 'sco': [],'irs': [], 'vrf': [],'vpls': [],'bridge': [], 'trunk':[]}
+instances_list = {'vrf': [], 'vpls': [], 'bridge':[], 'noassigned':[]}
+
+templateLoader = jinja2.FileSystemLoader( searchpath="/home/mlemos/github/config_translator/templates" )
+templateEnv = jinja2.Environment( loader=templateLoader )
 
 
 def main():
     
-    with open(f_sco) as f:  # Lectura de archivo sco.txt
+    # Lectura de archivo sco.txt
+
+    with open(f_sco) as f:  
         for line in f.readlines():
             if line.startswith('#'):
                 continue
             l = line.split("\t")
             if l[0] not in sco:
                 sco[l[0]] = {'interface': l[1], 'ip': l[2], 'vlan':l[3], 'vendor':l[4]}
-                sco_interfaces.append(l[1])
+                ifaces_list['sco'].append(l[1])
+
+
+    # Lecutra de nodo C
 
     nodoc = json.load(codecs.open(f_nodoc, 'r', 'utf-8-sig'))
     nodoc = nodoc['configuration'][0]
 
-    with open(f_vpns) as f:  # Lectura de configuracion VPNs
+    # Lectura de configuracion VPNs
+
+    with open(f_vpns) as f:  
         for line in f.readlines():
             if line.startswith('#'):
                 continue
@@ -47,12 +58,10 @@ def main():
             vpns[l[2].rstrip()] = {'id_cv': l[1], 'id_fc':l[0]}
 
 
-
-
-    # Armo listado de interfaces e instancias a migrar:
+    # Armado listado de interfaces e instancias a migrar:
 
     for interface in nodoc['interfaces'][0]['interface']: # Recorro las interfaz del Nodo C que corresponden a SCOs
-        if(interface['name']['data']) in sco_interfaces:  # Selecciono unicamente las que vamos a migrar
+        if(interface['name']['data']) in ifaces_list['sco']:  # Selecciono unicamente las que vamos a migrar
             if_name=interface['name']['data']
             for unit in interface['unit']:
                 interface_name = if_name + "." + str(unit['name']['data'])
@@ -69,9 +78,10 @@ def main():
                         if ('interface' in instance.keys()):
                             for iface in instance['interface']:
                                 if (interface_name == iface['name']['data']):
-
                                     if (instance['name']['data'] not in instances_list['vpls']):
                                         instances_list['vpls'].append(instance['name']['data'])
+                                        instances_list['noassigned'].append(instance['name']['data'])
+                                        
 
                 if ('encapsulation' in unit.keys() and 
                     unit['encapsulation'][0]['data'] == 'vlan-bridge'):  # Identifico bridges
@@ -83,7 +93,6 @@ def main():
                         if ('interface' in domain.keys()):
                             for iface in domain['interface']:
                                 if (interface_name == iface['name']['data']):
-
                                     if (domain['name']['data'] not in instances_list['bridge']):
                                         instances_list['bridge'].append(domain['name']['data'])
 
@@ -104,6 +113,7 @@ def main():
                                     ifaces_list['vrf'].append(interface_name)
                                     if (instance['name']['data'] not in instances_list['vrf']):
                                         instances_list['vrf'].append(instance['name']['data'])
+                                        instances_list['noassigned'].append(instance['name']['data'])
                 
                 if ('family' in unit.keys() and 
                     'bridge' in unit['family'][0].keys() and 
@@ -114,25 +124,29 @@ def main():
                     ifaces_list['pending'].remove(interface_name)
     
 
-    #pprint (vpns)
-
-    # identificacion de VPLS-id
+    # Identificacion de VPLS-id
 
     for vpls in instances_list['vpls']:
-        pprint(vpls)
         for instance in nodoc['routing-instances'][0]['instance']:
             if (vpls == instance['name']['data']):
                 id_cv = instance['protocols'][0]['vpls'][0]['vpls-id'][0]['data']
-                pprint(id_cv)
+                for vpn in vpns:
+                    if id_cv == vpns[vpn]['id_cv']:
+                        vpns[vpn]['alias'] = vpls
+                        if vpls in instances_list['noassigned']:
+                            instances_list['noassigned'].remove(vpls)
 
-
-    # Identificacion de vrf-id
+    # Identificacion de VRF-id
     for vrf in instances_list['vrf']:
         for instance in nodoc['routing-instances'][0]['instance']:
             if (vrf == instance['name']['data']):
-                if ('vrf-target' in instance and 'vrf-import' not in instance):
-                    id_cv = instance['vrf-target'][0]['community'][0]['data'] 
-                    pprint(id_cv)
+                if ('vrf-target' in instance and 'vrf-import' in instance):
+                    id_cv = instance['vrf-target'][0]['community'][0]['data'].split(":")[1] + ":" + instance['vrf-target'][0]['community'][0]['data'].split(":")[2]
+                    for vpn in vpns:
+                        if id_cv == vpns[vpn]['id_cv']:
+                            vpns[vpn]['alias'] = vrf
+                            if vrf in instances_list['noassigned']:
+                                instances_list['noassigned'].remove(vrf)
 
                 if ('vrf-import' in instance):
                     vrf_imp = instance['vrf-import'][0]['data']
@@ -146,44 +160,37 @@ def main():
                                             for item in nodoc['policy-options'][0]['community']:
                                                 if community['data'] == item['name']['data']:
                                                     for member in item['members']:
-                                                        id_cv= member['data']
-                                                        pprint(vrf)
-                                                        pprint (id_cv)
-
-
+                                                        id_cv = member['data'].split(":")[1] + ":" + member['data'].split(":")[2]
+                                                        for vpn in vpns:
+                                                            if id_cv == vpns[vpn]['id_cv']:
+                                                                vpns[vpn]['alias'] = vrf
+                                                                if vrf in instances_list['noassigned']:
+                                                                    instances_list['noassigned'].remove(vrf)
                 
 
-        #        
-        #        if roa_interfaces[interface][unit]['family'] == 'inet':
-        #            irs_list.append(interface_name)
-        #            pending_list.remove(interface_name)
-        #            for instance in roa_instances:
-        #                if interface_name in roa_instances[instance]['interfaces']:
-        #                    irs_list.remove(interface_name)
-        #                    vrf_list.append(interface_name)
-        #                    if instance not in (review_instances):
-        #                        review_instances.append(instance)
-        #        
+    # Verififacion de asignacion de VPNS:
+    if instances_list['noassigned']:
+        print("\nLas siguientes instancias no tienen asignacion:\n")
+        for instance in instances_list['noassigned']:
+            pprint (instance)
+        print("\n\nCompletar y volver a ejecutar.\n")
+        return
 
-                #if unit['encapsulation'] == 'vlan-vpls':
-                #    for instance in roa_instances:
-                #        if interface_name in roa_instances[instance]['interfaces']:
-                #            vpls_list.append(interface_name)
-                #            pending_list.remove(interface_name)
-                #            if instance not in (review_instances):
-                #                review_instances.append(instance)
-        #
-        #        # Identifico BRDIGEs
-        #        if roa_interfaces[interface][unit]['family'] == 'bridge':
-        #            bridge_list.append(interface_name)
-        #            pending_list.remove(interface_name)
-        #        
-        #        # Identifico PWs
-        #        if roa_interfaces[interface][unit]['encapsulation'] == 'vlan-ccc':
-        #            pw_list.append(interface_name)
-        #            pending_list.remove(interface_name)
+    for file in listdir("output"): # Borro archivos en carpeta "output"
+        remove("output/" + file)
 
+    for interface in ifaces_list['irs']:
+    #    pprint(interface)
+        for iface in nodoc['interfaces'][0]:
+            
+            
+            break
+    template = templateEnv.get_template('irs_interface.j2')
+    irs = {'sco': '123', 'vlan': '13412','ip_a': '1.1.1.1', 'ip_b': '2.2.2.2'}
+    test=template.render(irs)
 
+    with open('output/test.txt', 'a') as f:
+        f.write(test)
 
 if __name__ == '__main__':
         exit(main())
