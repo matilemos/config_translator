@@ -4,12 +4,17 @@
 
 import sys
 import json
-import xml.etree.ElementTree as ET
 import codecs
 import jinja2
 from pprint import pprint
 from os import listdir
 from os import remove
+
+from netaddr import IPAddress
+from netaddr import IPNetwork
+from netaddr import *
+
+templateEnv = jinja2.Environment( loader=jinja2.FileSystemLoader( searchpath="templates" ) )
 
 f_nodoc= 'files/nodoc.json'
 f_rac= 'files/rac.json'
@@ -18,20 +23,14 @@ f_rbb= 'files/rbb.json'
 f_sco= 'files/sco.txt'
 f_vpns= 'files/vpns.txt'
 
-
 sco = {}
-
 vpns = {}
 
 ifaces_list = {'all': [],'pending': [], 'sco': [],'irs': [], 'vrf': [],'vpls': [],'bridge': [], 'trunk':[]}
 instances_list = {'vrf': [], 'vpls': [], 'bridge':[], 'noassigned':[]}
 
-templateLoader = jinja2.FileSystemLoader( searchpath="templates" )
-templateEnv = jinja2.Environment( loader=templateLoader )
+rac_config = {'interfaces':[], 'routing-instances':[], 'routes':[]}
 
-
-rac_config = {'interfaces':[], 'routing-instances':[]}
-sac_config = {'interfaces':[]}
 
 def main():
     
@@ -45,7 +44,6 @@ def main():
             if l[0] not in sco:
                 sco[l[0]] = {'interface': l[1], 'ip': l[2], 'vlan':l[3], 'vendor':l[4]}
                 ifaces_list['sco'].append(l[1])
-
 
     # Lecutra de nodo C
 
@@ -61,9 +59,7 @@ def main():
             l = line.split("\t")
             vpns[l[2].rstrip()] = {'id_cv': l[1], 'id_fc':l[0]}
 
-
     # Armado listado de interfaces e instancias a migrar:
-
 
     for interface in nodoc['interfaces'][0]['interface']: # Recorro las interfaz del Nodo C que corresponden a SCOs
         if(interface['name']['data']) in ifaces_list['sco']:  # Selecciono unicamente las que vamos a migrar
@@ -116,7 +112,6 @@ def main():
                                     if (domain['name']['data'] not in instances_list['bridge']):
                                         instances_list['bridge'].append(domain['name']['data'])
                                         data['instance']=domain['name']['data']
-
                     
                 if ('family' in unit.keys() and 
                     'inet' in unit['family'][0].keys() and 
@@ -129,8 +124,7 @@ def main():
 
                     if ('vlan-id' in unit.keys()):  # Identifico vlan
                         data['vlan']=unit['vlan-id'][0]['data']
-
-                    
+                
                     for instance in nodoc['routing-instances'][0]['instance']:
                         if ('interface' in instance.keys()):
                             for iface in instance['interface']:
@@ -144,7 +138,6 @@ def main():
                                         data['service']='vrf'
                                         data['instance']=instance['name']['data']
                 
-                
                 if ('family' in unit.keys() and 
                     'bridge' in unit['family'][0].keys() and 
                     'interface-mode' in unit['family'][0]['bridge'][0].keys() and
@@ -156,17 +149,6 @@ def main():
     
                 rac_config['interfaces'].append(data)
 
-    '''
-    # Identificacion de VRF-id
-    
-    for vrf in instances_list['vrf']:
-        for instance in nodoc['routing-instances'][0]['instance']:
-
-
-
-                
-
-    '''
     for instance in nodoc['routing-instances'][0]['instance']:
         if (instance['name']['data'] in instances_list['vpls']):
             data = {'name': instance['name']['data']}
@@ -230,25 +212,33 @@ def main():
                                                                 instances_list['noassigned'].remove(data['name'])
 
             rac_config['routing-instances'].append(data)
+ 
+    for route in nodoc['routing-options'][0]['static'][0]['route']:
+        if ('tag' in route.keys() and
+            route['tag'][0]['metric-value'][0]['data'] == '100'):
+            data={'prefix':route['name']['data']}
+            if 'next-hop' in route.keys():
+                data['next_hop']=route['next-hop'][0]['data']
+                
+                    # Verificar si es IRS:
+                for interface in rac_config['interfaces']:
+                    if interface['service'] == 'irs':
+                        wan=IPNetwork(interface['ip'])
+                        #pprint(wan.cidr)
+                        if data['next_hop'] in IPNetwork(wan.cidr):
+                            rac_config['routes'].append(data)
 
-    #pprint(rac_config)
-
-
-
-    # Verififacion de asignacion de VPNS:
     if instances_list['noassigned']:
         print("\nLas siguientes instancias no tienen asignacion:\n")
         for instance in instances_list['noassigned']:
             pprint (instance)
         print("\n\nCompletar y volver a ejecutar.\n")
-        return
+        return  # Verififacion de asignacion de VPNS:
 
+    pprint(rac_config)
 
-    for file in listdir("output"): # Borro archivos en carpeta "output"
+    for file in listdir("output"):  # Borro archivos en carpeta "output"
         remove("output/" + file)
-
-
-
 
 
 if __name__ == '__main__':
