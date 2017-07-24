@@ -1,2 +1,4 @@
-set routing-instances {{vpn}} route-distinguisher {{loopback}}:{{id_vpn}}
-set routing-instances {{vpn}} vrf-target target:64600:{{id_vpn}}
+set routing-instances {{vpn}} route-distinguisher {{loopback}}:{{vpn_id}}
+set routing-instances {{vpn}} vrf-target target:64600:{{vpn_id}}
+
+

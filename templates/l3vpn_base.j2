@@ -4,7 +4,7 @@ set routing-instances {{vpn}} vrf-import imp-{{vpn}}
 set routing-instances {{vpn}} vrf-export exp-{{vpn}}
 
 set policy-options policy-statement imp-{{vpn}} term import-redes-privadas from protocol bgp
-set policy-options policy-statement imp-{{vpn}} term import-redes-privadas from community {{vpn_id}}
+set policy-options policy-statement imp-{{vpn}} term import-redes-privadas from community {{vpn}}
 set policy-options policy-statement imp-{{vpn}} term import-redes-privadas then accept
 set policy-options policy-statement imp-{{vpn}} term import-gestion from protocol bgp
 set policy-options policy-statement imp-{{vpn}} term import-gestion from community GESTION-CPE-ESTATICAS
@@ -17,7 +17,9 @@ set policy-options policy-statement exp-{{vpn}} term export-loopbacks-cpe from r
 set policy-options policy-statement exp-{{vpn}} term export-loopbacks-cpe then community add GESTION-CPE-VPN
 set policy-options policy-statement exp-{{vpn}} term export-loopbacks-cpe then accept
 set policy-options policy-statement exp-{{vpn}} term export-redes-privadas from protocol bgp
-set policy-options policy-statement exp-{{vpn}} term export-redes-privadas then community add {{vpn_id}}
+set policy-options policy-statement exp-{{vpn}} term export-redes-privadas then community add {{vpn}}
 set policy-options policy-statement exp-{{vpn}} term export-redes-privadas then accept
 set policy-options policy-statement exp-{{vpn}} term default-reject then reject
 set policy-options community {{vpn}} members target:64600:{{vpn_id}}
+
+
