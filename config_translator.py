@@ -32,6 +32,14 @@ instances_list = {'vrf': [], 'vpls': [], 'bridge':[], 'noassigned':[]}
 rac_config = {'interfaces':[], 'routing-instances':[], 'routes':[]}
 
 
+def create_irs(interface):
+    result = templateEnv.get_template('irs_interface.j2').render(interface)
+    with open('output/rac.txt', 'a') as f:
+        f.write(result)
+    return    
+
+
+
 def main():
     
     # Lectura de archivo sco.txt
@@ -58,10 +66,8 @@ def main():
                 continue
             l = line.split("\t")
             vpns[l[2].rstrip()] = {'id_cv': l[1], 'id_fc':l[0]}
-
-    # Armado listado de interfaces e instancias a migrar:
-
-    for interface in nodoc['interfaces'][0]['interface']: # Recorro las interfaz del Nodo C que corresponden a SCOs
+    
+    for interface in nodoc['interfaces'][0]['interface']: # Obtencion de interfaces e instancias a migrar
         if(interface['name']['data']) in ifaces_list['sco']:  # Selecciono unicamente las que vamos a migrar
             if_name=interface['name']['data']
             for unit in interface['unit']:
@@ -149,7 +155,7 @@ def main():
     
                 rac_config['interfaces'].append(data)
 
-    for instance in nodoc['routing-instances'][0]['instance']:
+    for instance in nodoc['routing-instances'][0]['instance']:  # Obtencion de RT a partir de nodo C, grupos BGP
         if (instance['name']['data'] in instances_list['vpls']):
             data = {'name': instance['name']['data']}
             
@@ -211,34 +217,64 @@ def main():
                                                             if data['name'] in instances_list['noassigned']:
                                                                 instances_list['noassigned'].remove(data['name'])
 
-            rac_config['routing-instances'].append(data)
- 
-    for route in nodoc['routing-options'][0]['static'][0]['route']:
+            if ('protocols' in instance.keys()):
+                for protocol in instance['protocols'][0]:
+                    if 'bgp' in instance['protocols'][0].keys():
+                        if 'group' in instance['protocols'][0]['bgp'][0].keys():
+                            data['bgp_groups']=[]
+                            for group in instance['protocols'][0]['bgp'][0]['group']:
+                                #pprint(data)
+                                data_g={}
+                                if 'description' in group.keys():
+                                    data_g['description'] = group['description'][0]['data']
+                                if 'name' in group.keys():
+                                    data_g['name'] = group['name']['data']
+                                if 'local-address' in group.keys():
+                                    data_g['local-address'] = group['local-address'][0]['data']
+                                if 'neighbor' in group.keys():
+                                    data_g['neighbor'] = group['neighbor'][0]['name']['data']
+                                    data_g['peer_as'] = group['neighbor'][0]['peer-as'][0]['data']
+                                data['bgp_groups'].append(data_g)
+                rac_config['routing-instances'].append(data)
+            
+    for route in nodoc['routing-options'][0]['static'][0]['route']:  # Obtencion de rutas estaticas Internet
         if ('tag' in route.keys() and
             route['tag'][0]['metric-value'][0]['data'] == '100'):
             data={'prefix':route['name']['data']}
             if 'next-hop' in route.keys():
                 data['next_hop']=route['next-hop'][0]['data']
-                
-                    # Verificar si es IRS:
+                # Verificar si es IRS:
                 for interface in rac_config['interfaces']:
                     if interface['service'] == 'irs':
                         wan=IPNetwork(interface['ip'])
-                        #pprint(wan.cidr)
                         if data['next_hop'] in IPNetwork(wan.cidr):
-                            rac_config['routes'].append(data)
+                            #rac_config['routes'].append(data)
+                            interface['routes']=[]
+                            interface['routes'].append(data)
 
-    if instances_list['noassigned']:
+
+    if instances_list['noassigned']:  # Verificacion de asignaciones
         print("\nLas siguientes instancias no tienen asignacion:\n")
         for instance in instances_list['noassigned']:
             pprint (instance)
         print("\n\nCompletar y volver a ejecutar.\n")
-        return  # Verififacion de asignacion de VPNS:
-
-    pprint(rac_config)
+        return 
 
     for file in listdir("output"):  # Borro archivos en carpeta "output"
         remove("output/" + file)
+
+
+    for interface in rac_config['interfaces']:
+        if interface['service'] == 'irs':
+            create_irs(interface)
+
+    #for interface in rac_config['interfaces']:
+    #    if interface['service'] == 'vpls':
+    #        create_vrf(interface)
+
+    #for interface in rac_config['interfaces']:
+    #    if interface['service'] == 'vrf':
+    #        create_vrf(interface)
 
 
 if __name__ == '__main__':

@@ -1,9 +1,10 @@
-set interfaces ae{{sco}} unit {{vlan}} description {{description}}
+set interfaces ae{{sco}} unit {{vlan}} description "{{description}}"
 set interfaces ae{{sco}} unit {{vlan}} vlan-id {{vlan}}
-set interfaces ae{{sco}} unit {{vlan}} family inet address {{ip_a}}/30
+set interfaces ae{{sco}} unit {{vlan}} family inet address {{ip}}
 set routing-instances INTERNET interface ae{{sco}}.{{vlan}}
-
-{% if public_prefix is defined -%}
-set routing-instances INTERNET routing-options static route {{public_prefix}} next-hop {{ip_b}} tag 1
-{% endif -%}
+{% if routes is defined -%}
+{% for route in routes -%}
+set routing-instances INTERNET routing-options static route {{route['prefix']}} next-hop {{route['next_hop']}} tag 1
+{% endfor-%}
+{% endif %}
 
