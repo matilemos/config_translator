@@ -2,7 +2,12 @@ set interfaces ae{{sco}} unit {{vlan}} description {{description}}
 set interfaces ae{{sco}} unit {{vlan}} vlan-id {{vlan}}
 set interfaces ae{{sco}} unit {{vlan}} family inet address {{ip}}
 set routing-instances {{vpn}} interface ae{{sco}}.{{vlan}}
-set routing-instances {{vpn}} protocols bgp group CPE-{{peer_as}} type external
-set routing-instances {{vpn}} protocols bgp group CPE-{{peer_as}} description {{description}}
-set routing-instances {{vpn}} protocols bgp group CPE-{{peer_as}} peer-as {{peer_as}}
-set routing-instances {{vpn}} protocols bgp group CPE-{{peer_as}} neighbor {{ip_b}}
+
+{% if bgp_groups is defined -%}
+{% for bgp_group in bgp_groups -%}
+set routing-instances {{vpn}} protocols bgp group CPE-{{bgp_group['peer_as']}} type external
+set routing-instances {{vpn}} protocols bgp group CPE-{{bgp_group['peer_as']}} description {{bgp_group['description']}}
+set routing-instances {{vpn}} protocols bgp group CPE-{{bgp_group['peer_as']}} peer-as {{bgp_group['peer_as']}}
+set routing-instances {{vpn}} protocols bgp group CPE-{{bgp_group['peer_as']}} neighbor {{bgp_group['neighbor']}}
+{% endfor -%}
+{% endif -%}

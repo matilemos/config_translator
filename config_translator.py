@@ -42,9 +42,9 @@ def create_irs_iface(interface):
 
 def create_vpls_base(instance):
     for ri in rac_config['routing-instances']:
-        if instance == ri['name_cv']:
+        if instance == ri['ri_name_cv']:
             data = {}
-            data['vpn'] = ri['name_fc']
+            data['vpn'] = ri['ri_name_fc']
             data['vpn_id'] = ri['id_fc'].split(":")[1]
             data['loopback'] = loopback
             config = templateEnv.get_template('l2vpn_base.j2').render(data)
@@ -65,26 +65,41 @@ def create_vpls_iface(interface):
 
 def create_vrf_base(instance):
     for ri in rac_config['routing-instances']:
-        if instance == ri['name_cv']:
-            pprint(ri)
+        if instance == ri['ri_name_cv']:
             data = {}
-            data['vpn'] = ri['name_fc']
+            data['vpn'] = ri['ri_name_fc']
             data['vpn_id'] = ri['id_fc'].split(":")[1]
             data['loopback'] = loopback
             config = templateEnv.get_template('l3vpn_base.j2').render(data)
             with open('output/rac.txt', 'a') as f:
                 f.write(config)
-            return ri['name_fc']
+            #pprint(rac_config['routing-instances'])
+            return ri['ri_name_fc']
 
 def create_vrf_iface(interface):
-    if ('instance_cv' in interface.keys()):
-        if interface['instance_cv'] not in instances_list['created']:
-            interface['instance_fc'] = create_vrf_base(interface['instance_cv'])
-            data = interface
-            data['instance'] = data['instance_fc']
-            config = templateEnv.get_template('l3vpn_interface.j2').render(data)
-            #with open('output/rac.txt', 'a') as f:
-            #    f.write(config)
+    if interface['ri_name_fc'] not in instances_list['created']:
+        create_vrf_base(interface['ri_name_fc'])
+    
+    data = interface
+    data['vpn'] = data['ri_name_fc']
+    for ri in rac_config['routing-instances']:
+        if interface['ri_name_fc'] == ri['ri_name_cv']:
+            for bgp_group in ri['bgp_groups']:
+                wan=IPNetwork(interface['ip'])
+                if bgp_group['neighbor'] in IPNetwork(wan.cidr):
+                    if 'bgp_gorups' not in data.keys():
+                        data['bgp_groups'] = []
+                    data['bgp_groups'].append(bgp_group)
+    pprint(data)
+    config_rac = templateEnv.get_template('l3vpn_interface.j2').render(data)
+    
+    with open('output/rac.txt', 'a') as f:
+        f.write(config_rac)
+    
+    with open('output/nodo_c.txt', 'a') as f:
+        f.write('delete interfaces ' + data['nodoc_interface'] + "\n")
+    
+
     return    
 
 
@@ -128,6 +143,8 @@ def main():
                     if sco[element]['interface'] == if_name:
                         data = {'sco':sco[element]['vlan']}
 
+                data['nodoc_interface'] = interface_name
+
                 if ('description' in unit.keys()): #Cargo descripcion
                     data['description']=unit['description'][0]['data']
                 else:
@@ -151,7 +168,7 @@ def main():
                                     if (instance['name']['data'] not in instances_list['vpls']):
                                         instances_list['vpls'].append(instance['name']['data'])
                                         instances_list['noassigned'].append(instance['name']['data'])
-                                        data['instance_cv']=instance['name']['data']
+                                        data['ri_name_cv']=instance['name']['data']
 
                 if ('encapsulation' in unit.keys() and 
                     unit['encapsulation'][0]['data'] == 'vlan-bridge'):  # Identifico bridges
@@ -166,7 +183,7 @@ def main():
                                 if (interface_name == iface['name']['data']):
                                     if (domain['name']['data'] not in instances_list['bridge']):
                                         instances_list['bridge'].append(domain['name']['data'])
-                                        data['instance_cv']=domain['name']['data']
+                                        data['ri_name_cv']=domain['name']['data']
                     
                 if ('family' in unit.keys() and 
                     'inet' in unit['family'][0].keys() and 
@@ -191,7 +208,7 @@ def main():
                                         instances_list['vrf'].append(instance['name']['data'])
                                         instances_list['noassigned'].append(instance['name']['data'])
                                         data['service']='vrf'
-                                        data['instance_cv']=instance['name']['data']
+                                        data['ri_name_cv']=instance['name']['data']
                 
                 if ('family' in unit.keys() and 
                     'bridge' in unit['family'][0].keys() and 
@@ -206,7 +223,7 @@ def main():
 
     for instance in nodoc['routing-instances'][0]['instance']:  # Obtencion de RT a partir de nodo C, grupos BGP
         if (instance['name']['data'] in instances_list['vpls']):
-            data = {'name_cv': instance['name']['data']}
+            data = {'ri_name_cv': instance['name']['data']}
             
             if ('description' in instance.keys()):
                 data['description'] = instance['description'][0]['data']
@@ -223,13 +240,13 @@ def main():
                 for vpn in vpns:
                     if (data['id_cv'] == vpns[vpn]['id_cv']):
                         data['id_fc'] = vpns[vpn]['id_fc']
-                        data['name_fc'] = vpn
-                        if data['name_cv'] in instances_list['noassigned']:
-                            instances_list['noassigned'].remove(data['name_cv'])
+                        data['ri_name_fc'] = vpn
+                        if data['ri_name_cv'] in instances_list['noassigned']:
+                            instances_list['noassigned'].remove(data['ri_name_cv'])
             rac_config['routing-instances'].append(data)                                
 
         if (instance['name']['data'] in instances_list['vrf']):
-            data = {'name_cv': instance['name']['data']}
+            data = {'ri_name_cv': instance['name']['data']}
             
             if ('description' in instance.keys()):
                 data['description'] = instance['description'][0]['data']
@@ -243,7 +260,7 @@ def main():
                 data['id_cv'] = instance['vrf-target'][0]['community'][0]['data'].split(":")[1] + ":" + instance['vrf-target'][0]['community'][0]['data'].split(":")[2]
                 for vpn in vpns:
                     if data['id_cv'] == vpns[vpn]['id_cv']:
-                        data['name_fc'] = vpn
+                        data['ri_name_fc'] = vpn
                         if data['name'] in instances_list['noassigned']:
                              instances_list['noassigned'].remove(data['name'])
 
@@ -262,9 +279,9 @@ def main():
                                                     for vpn in vpns:
                                                         if data['id_cv'] == vpns[vpn]['id_cv']:
                                                             data['id_fc'] = vpns[vpn]['id_fc']
-                                                            data['name_fc'] = vpn
-                                                            if data['name_cv'] in instances_list['noassigned']:
-                                                                instances_list['noassigned'].remove(data['name_cv'])
+                                                            data['ri_name_fc'] = vpn
+                                                            if data['ri_name_cv'] in instances_list['noassigned']:
+                                                                instances_list['noassigned'].remove(data['ri_name_cv'])
 
             if ('protocols' in instance.keys()):
                 for protocol in instance['protocols'][0]:
@@ -277,8 +294,8 @@ def main():
                                     data_g['description'] = group['description'][0]['data']
                                 if 'name' in group.keys():
                                     data_g['name'] = group['name']['data']
-                                if 'local-address' in group.keys():
-                                    data_g['local-address'] = group['local-address'][0]['data']
+                                if 'local_address' in group.keys():
+                                    data_g['local_address'] = group['local-address'][0]['data']
                                 if 'neighbor' in group.keys():
                                     data_g['neighbor'] = group['neighbor'][0]['name']['data']
                                     data_g['peer_as'] = group['neighbor'][0]['peer-as'][0]['data']
@@ -308,20 +325,20 @@ def main():
         print("\n\nCompletar y volver a ejecutar.\n")
         return 
 
+    for interface in rac_config['interfaces']:
+        if ('ri_name_cv' in interface.keys() and 'ri_name_fc' not in interface.keys()):
+            for instance in rac_config['routing-instances']:
+                if instance['ri_name_cv'] == interface['ri_name_cv']:
+                    interface['ri_name_fc'] = instance['ri_name_fc']
+
     for file in listdir("output"):  # Borro archivos en carpeta "output"
         remove("output/" + file)
 
-    #for interface in rac_config['interfaces']:
-    #    if interface['service'] == 'irs':
-    #        create_irs_iface(interface)
-
-    #for interface in rac_config['interfaces']:
-    #    if interface['service'] == 'vpls':
-    #        create_vpls_iface(interface)
-
+    
     for interface in rac_config['interfaces']:
-        if interface['service'] == 'vrf':
+        if ('ri_name_cv' in interface.keys() and interface['service'] == 'vrf'):
             create_vrf_iface(interface)
+
 
 
 if __name__ == '__main__':
