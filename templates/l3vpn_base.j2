@@ -2,7 +2,6 @@ set routing-instances {{vpn}} route-distinguisher {{loopback}}:{{vpn_id}}
 set routing-instances {{vpn}} vrf-target target:64600:{{vpn_id}}
 set routing-instances {{vpn}} vrf-import imp-{{vpn}}
 set routing-instances {{vpn}} vrf-export exp-{{vpn}}
-
 set policy-options policy-statement imp-{{vpn}} term import-redes-privadas from protocol bgp
 set policy-options policy-statement imp-{{vpn}} term import-redes-privadas from community {{vpn}}
 set policy-options policy-statement imp-{{vpn}} term import-redes-privadas then accept

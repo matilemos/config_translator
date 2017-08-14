@@ -73,7 +73,6 @@ def create_vrf_base(instance):
             config = templateEnv.get_template('l3vpn_base.j2').render(data)
             with open('output/rac.txt', 'a') as f:
                 f.write(config)
-            #pprint(rac_config['routing-instances'])
             return ri['ri_name_fc']
 
 def create_vrf_iface(interface):
@@ -83,14 +82,14 @@ def create_vrf_iface(interface):
     data = interface
     data['vpn'] = data['ri_name_fc']
     for ri in rac_config['routing-instances']:
-        if interface['ri_name_fc'] == ri['ri_name_cv']:
+        if interface['ri_name_cv'] == ri['ri_name_cv']:
             for bgp_group in ri['bgp_groups']:
                 wan=IPNetwork(interface['ip'])
                 if bgp_group['neighbor'] in IPNetwork(wan.cidr):
                     if 'bgp_gorups' not in data.keys():
                         data['bgp_groups'] = []
                     data['bgp_groups'].append(bgp_group)
-    pprint(data)
+    
     config_rac = templateEnv.get_template('l3vpn_interface.j2').render(data)
     
     with open('output/rac.txt', 'a') as f:
