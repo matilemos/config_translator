@@ -50,17 +50,21 @@ def create_vpls_base(instance):
             config = templateEnv.get_template('l2vpn_base.j2').render(data)
             with open('output/rac.txt', 'a') as f:
                 f.write(config)
-            return ri['name_fc']
+            return
 
 def create_vpls_iface(interface):
-    if ('instance_cv' in interface.keys()):
-        if interface['instance_cv'] not in instances_list['created']:
-            interface['instance_fc'] = create_vpls_base(interface['instance_cv'])
-            data = interface
-            data['instance'] = data['instance_fc']
-            config = templateEnv.get_template('l2vpn_interface.j2').render(data)
-            with open('output/rac.txt', 'a') as f:
-                f.write(config)
+    if interface['ri_name_fc'] not in instances_list['created']:
+        create_vpls_base(interface['ri_name_cv'])
+    
+    data = interface
+    data['vpn'] = data['ri_name_fc']
+    config_rac = templateEnv.get_template('l2vpn_interface.j2').render(data)
+    
+    with open('output/rac.txt', 'a') as f:
+        f.write(config_rac)
+    
+    with open('output/nodo_c.txt', 'a') as f:
+        f.write('delete interfaces ' + data['nodoc_interface'] + "\n")
     return    
 
 def create_vrf_base(instance):
@@ -73,11 +77,11 @@ def create_vrf_base(instance):
             config = templateEnv.get_template('l3vpn_base.j2').render(data)
             with open('output/rac.txt', 'a') as f:
                 f.write(config)
-            return ri['ri_name_fc']
+            return
 
 def create_vrf_iface(interface):
     if interface['ri_name_fc'] not in instances_list['created']:
-        create_vrf_base(interface['ri_name_fc'])
+        create_vrf_base(interface['ri_name_cv'])
     
     data = interface
     data['vpn'] = data['ri_name_fc']
@@ -98,7 +102,6 @@ def create_vrf_iface(interface):
     with open('output/nodo_c.txt', 'a') as f:
         f.write('delete interfaces ' + data['nodoc_interface'] + "\n")
     
-
     return    
 
 
@@ -146,6 +149,7 @@ def main():
 
                 if ('description' in unit.keys()): #Cargo descripcion
                     data['description']=unit['description'][0]['data']
+                #    pprint(unit['description'][0]['data'])
                 else:
                     data['description']= "Sin descripcion"
                                     
@@ -200,14 +204,15 @@ def main():
                         if ('interface' in instance.keys()):
                             for iface in instance['interface']:
                                 if (interface_name == iface['name']['data']):
-
+                                    pprint(iface)
                                     ifaces_list['irs'].remove(interface_name)
                                     ifaces_list['vrf'].append(interface_name)
+                                    data['service']='vrf'
+                                    data['ri_name_cv']=instance['name']['data']
                                     if (instance['name']['data'] not in instances_list['vrf']):
                                         instances_list['vrf'].append(instance['name']['data'])
                                         instances_list['noassigned'].append(instance['name']['data'])
-                                        data['service']='vrf'
-                                        data['ri_name_cv']=instance['name']['data']
+
                 
                 if ('family' in unit.keys() and 
                     'bridge' in unit['family'][0].keys() and 
@@ -335,9 +340,16 @@ def main():
 
     
     for interface in rac_config['interfaces']:
+        if ('ri_name_cv' not in interface.keys() and interface['service'] == 'irs'):
+            create_irs_iface(interface)
+
+    for interface in rac_config['interfaces']:
         if ('ri_name_cv' in interface.keys() and interface['service'] == 'vrf'):
             create_vrf_iface(interface)
 
+    for interface in rac_config['interfaces']:
+        if ('ri_name_cv' in interface.keys() and interface['service'] == 'vpls'):
+            create_vpls_iface(interface)
 
 
 if __name__ == '__main__':
