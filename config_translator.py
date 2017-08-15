@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 # Migrador de nodo completo a partir de Json
 
-
 import sys
 import json
 import codecs
@@ -12,9 +11,10 @@ from os import remove
 
 from netaddr import IPAddress
 from netaddr import IPNetwork
-from netaddr import *
 
 templateEnv = jinja2.Environment( loader=jinja2.FileSystemLoader( searchpath="templates" ) )
+
+tipo = 'plazachica/'
 
 f_nodoc= 'files/nodoc.json'
 f_rac= 'files/rac.json'
@@ -23,7 +23,7 @@ f_rbb= 'files/rbb.json'
 f_sco= 'files/sco.txt'
 f_vpns= 'files/vpns.txt'
 
-sco = {}
+sco = []
 vpns = {}
 
 ifaces_list = {'all': [],'pending': [], 'sco': [],'irs': [], 'vrf': [],'vpls': [],'bridge': [], 'trunk':[]}
@@ -34,11 +34,21 @@ rac_config = {'interfaces':[], 'routing-instances':[], 'routes':[]}
 loopback = '1.1.1.1'
 
 
-def create_irs_iface(interface):
-    config = templateEnv.get_template('irs_interface.j2').render(interface)
+def create_sco(switch):
+    data=switch
+    data['sco']=data['vlan']
+    config = templateEnv.get_template(tipo+'rac/sco.j2').render(data)
     with open('output/rac.txt', 'a') as f:
         f.write(config)
-    return    
+    return
+
+def create_irs_iface(interface):
+    data=interface
+    config = templateEnv.get_template(tipo+'rac/irs_interface.j2').render(data)
+    with open('output/rac.txt', 'a') as f:
+        f.write(config)
+    delete_nodoc_service(data)
+    return
 
 def create_vpls_base(instance):
     for ri in rac_config['routing-instances']:
@@ -47,7 +57,7 @@ def create_vpls_base(instance):
             data['vpn'] = ri['ri_name_fc']
             data['vpn_id'] = ri['id_fc'].split(":")[1]
             data['loopback'] = loopback
-            config = templateEnv.get_template('l2vpn_base.j2').render(data)
+            config = templateEnv.get_template(tipo+'/rac/l2vpn_base.j2').render(data)
             with open('output/rac.txt', 'a') as f:
                 f.write(config)
             return
@@ -55,17 +65,13 @@ def create_vpls_base(instance):
 def create_vpls_iface(interface):
     if interface['ri_name_fc'] not in instances_list['created']:
         create_vpls_base(interface['ri_name_cv'])
-    
     data = interface
     data['vpn'] = data['ri_name_fc']
-    config_rac = templateEnv.get_template('l2vpn_interface.j2').render(data)
-    
+    config = templateEnv.get_template(tipo+'/rac/l2vpn_interface.j2').render(data)
     with open('output/rac.txt', 'a') as f:
-        f.write(config_rac)
-    
-    with open('output/nodo_c.txt', 'a') as f:
-        f.write('delete interfaces ' + data['nodoc_interface'] + "\n")
-    return    
+        f.write(config)
+    delete_nodoc_service(data)
+    return
 
 def create_vrf_base(instance):
     for ri in rac_config['routing-instances']:
@@ -74,7 +80,7 @@ def create_vrf_base(instance):
             data['vpn'] = ri['ri_name_fc']
             data['vpn_id'] = ri['id_fc'].split(":")[1]
             data['loopback'] = loopback
-            config = templateEnv.get_template('l3vpn_base.j2').render(data)
+            config = templateEnv.get_template(tipo+'/rac/l3vpn_base.j2').render(data)
             with open('output/rac.txt', 'a') as f:
                 f.write(config)
             return
@@ -93,31 +99,29 @@ def create_vrf_iface(interface):
                     if 'bgp_gorups' not in data.keys():
                         data['bgp_groups'] = []
                     data['bgp_groups'].append(bgp_group)
-    
-    config_rac = templateEnv.get_template('l3vpn_interface.j2').render(data)
+    config = templateEnv.get_template(tipo+'/rac/l3vpn_interface.j2').render(data)
     
     with open('output/rac.txt', 'a') as f:
-        f.write(config_rac)
-    
-    with open('output/nodo_c.txt', 'a') as f:
-        f.write('delete interfaces ' + data['nodoc_interface'] + "\n")
-    
-    return    
+        f.write(config)
+    delete_nodoc_service(data)
+    return
 
-
+def delete_nodoc_service(data):
+    config = templateEnv.get_template('nodoc/delete_service.j2').render(data)
+    with open('output/nodoc.txt', 'a') as f:
+        f.write(config)
+    return
 
 def main():
-    
-    # Lectura de archivo sco.txt
 
     with open(f_sco) as f:  
         for line in f.readlines():
             if line.startswith('#'):
                 continue
             l = line.split("\t")
-            if l[0] not in sco:
-                sco[l[0]] = {'interface': l[1], 'ip': l[2], 'vlan':l[3], 'vendor':l[4]}
-                ifaces_list['sco'].append(l[1])
+            data = {'name': l[0], 'interface': l[1], 'ip': l[2], 'vlan':l[3], 'vendor':l[4].strip("\n")}
+            sco.append(data)
+            ifaces_list['sco'].append(l[1])
 
     # Lecutra de nodo C
 
@@ -136,20 +140,31 @@ def main():
     for interface in nodoc['interfaces'][0]['interface']: # Obtencion de interfaces e instancias a migrar
         if(interface['name']['data']) in ifaces_list['sco']:  # Selecciono unicamente las que vamos a migrar
             if_name=interface['name']['data']
+            
+            if 'aggregated-ether-options' in interface.keys() and 'lacp' in interface['aggregated-ether-options'][0]:
+                if 'active' in interface['aggregated-ether-options'][0]['lacp'][0].keys():
+                    lacp = 'active'
+                if 'passive' in interface['aggregated-ether-options'][0]['lacp'][0].keys():
+                    lacp = 'passive'
+
+                if lacp:
+                    for switch in sco:
+                        if if_name == switch['interface']:
+                            switch['lacp']=lacp
+
             for unit in interface['unit']:
                 interface_name = if_name + "." + str(unit['name']['data'])
                 ifaces_list['all'].append(interface_name)
                 ifaces_list['pending'].append(interface_name)
 
-                for element in sco:  #Cargo SCO
-                    if sco[element]['interface'] == if_name:
-                        data = {'sco':sco[element]['vlan']}
+                for switch in sco:  #Cargo SCO
+                    if switch['interface'] == if_name:
+                        data = {'sco':switch['vlan']}
 
                 data['nodoc_interface'] = interface_name
 
                 if ('description' in unit.keys()): #Cargo descripcion
                     data['description']=unit['description'][0]['data']
-                #    pprint(unit['description'][0]['data'])
                 else:
                     data['description']= "Sin descripcion"
                                     
@@ -204,7 +219,6 @@ def main():
                         if ('interface' in instance.keys()):
                             for iface in instance['interface']:
                                 if (interface_name == iface['name']['data']):
-                                    pprint(iface)
                                     ifaces_list['irs'].remove(interface_name)
                                     ifaces_list['vrf'].append(interface_name)
                                     data['service']='vrf'
@@ -321,7 +335,6 @@ def main():
                             interface['routes']=[]
                             interface['routes'].append(data)
 
-
     if instances_list['noassigned']:  # Verificacion de asignaciones
         print("\nLas siguientes instancias no tienen asignacion:\n")
         for instance in instances_list['noassigned']:
@@ -338,7 +351,10 @@ def main():
     for file in listdir("output"):  # Borro archivos en carpeta "output"
         remove("output/" + file)
 
-    
+
+    for switch in sco:
+        create_sco(switch)
+
     for interface in rac_config['interfaces']:
         if ('ri_name_cv' not in interface.keys() and interface['service'] == 'irs'):
             create_irs_iface(interface)
@@ -354,3 +370,4 @@ def main():
 
 if __name__ == '__main__':
         exit(main())
+

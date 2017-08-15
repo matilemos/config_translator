@@ -1,0 +1,15 @@
+delete interfaces {{nodoc_interface}}
+{% if routes is defined -%}
+{% for route in routes -%}
+delete routing-options static route {{route['prefix']}} next-hop {{route['next_hop']}}
+{% endfor -%}
+{% endif -%}
+{% if vpn is defined -%}
+delete routing-instances {{vpn}} interface {{nodoc_interface}}
+{% if bgp_groups is defined -%}
+{% for bgp_group in bgp_groups -%}
+delete routing-instances {{vpn}} protocols bgp group {{bgp_group['name']}}
+{% endfor -%}
+{% endif -%}
+{% endif %}
+

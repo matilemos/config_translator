@@ -1,0 +1,12 @@
+set interfaces ae{{sco}} description "{{name}} - IP:{{ip}}"
+set interfaces ae{{sco}} flexible-vlan-tagging
+set interfaces ae{{sco}} encapsulation flexible-ethernet-services
+{% if lacp is defined -%}
+set interfaces ae{{sco}} aggregated-ether-options lacp {{lacp}}
+{% endif -%}
+set interfaces ae{{sco}} unit 55 description "{{name}} - IP:{{ip}}"
+set interfaces ae{{sco}} unit 55 encapsulation vlan-bridge
+set interfaces ae{{sco}} unit 55 vlan-id 55
+set bridge-domains VLAN-55 interface ae{{sco}}.55
+
+
