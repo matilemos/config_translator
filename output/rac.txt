@@ -1,0 +1,1492 @@
+set interfaces ae1 description "SCO.BBO1 - IP:10.106.64.2"
+set interfaces ae1 flexible-vlan-tagging
+set interfaces ae1 encapsulation flexible-ethernet-services
+set interfaces ae1 unit 55 description "SCO.BBO1 - IP:10.106.64.2"
+set interfaces ae1 unit 55 encapsulation vlan-bridge
+set interfaces ae1 unit 55 vlan-id 55
+set bridge-domains VLAN-55 interface ae1.55
+
+set interfaces ae2 description "SCO.BBO2 - IP:10.106.64.6"
+set interfaces ae2 flexible-vlan-tagging
+set interfaces ae2 encapsulation flexible-ethernet-services
+set interfaces ae2 unit 55 description "SCO.BBO2 - IP:10.106.64.6"
+set interfaces ae2 unit 55 encapsulation vlan-bridge
+set interfaces ae2 unit 55 vlan-id 55
+set bridge-domains VLAN-55 interface ae2.55
+
+set interfaces ae3 description "SCO.BBO3 - IP:10.106.64.7"
+set interfaces ae3 flexible-vlan-tagging
+set interfaces ae3 encapsulation flexible-ethernet-services
+set interfaces ae3 aggregated-ether-options lacp active
+set interfaces ae3 unit 55 description "SCO.BBO3 - IP:10.106.64.7"
+set interfaces ae3 unit 55 encapsulation vlan-bridge
+set interfaces ae3 unit 55 vlan-id 55
+set bridge-domains VLAN-55 interface ae3.55
+
+set interfaces ae4 description "SCO.BBO4 - IP:10.106.64.17"
+set interfaces ae4 flexible-vlan-tagging
+set interfaces ae4 encapsulation flexible-ethernet-services
+set interfaces ae4 aggregated-ether-options lacp active
+set interfaces ae4 unit 55 description "SCO.BBO4 - IP:10.106.64.17"
+set interfaces ae4 unit 55 encapsulation vlan-bridge
+set interfaces ae4 unit 55 vlan-id 55
+set bridge-domains VLAN-55 interface ae4.55
+
+set interfaces ae1 unit 301 description "CLI_L3:IRS-Guillermo_Dietrich"
+set interfaces ae1 unit 301 vlan-id 301
+set interfaces ae1 unit 301 family inet address 10.104.64.41/30
+set routing-instances INTERNET interface ae1.301
+set routing-instances INTERNET routing-options static route 181.30.1.80/29 next-hop 10.104.64.42 tag 1
+
+set interfaces ae1 unit 302 description "FCORP-INTERNET_DEDICADO-30546675676-NACIONAL_DE_VIALIDAD_DIRECCION-139963769-50Mbps"
+set interfaces ae1 unit 302 vlan-id 302
+set interfaces ae1 unit 302 family inet address 10.104.168.33/30
+set routing-instances INTERNET interface ae1.302
+set routing-instances INTERNET routing-options static route 181.30.102.160/27 next-hop 10.104.168.34 tag 1
+
+set interfaces ae1 unit 303 description "CLI_L3:IRS-VNacional"
+set interfaces ae1 unit 303 vlan-id 303
+set interfaces ae1 unit 303 family inet address 10.104.64.9/30
+set routing-instances INTERNET interface ae1.303
+set routing-instances INTERNET routing-options static route 200.42.69.56/29 next-hop 10.104.64.10 tag 1
+
+set interfaces ae1 unit 304 description "FCORP-INTERNET_DEDICADO-30555888925-LABORATORIOS_IACA-93593720-5Mbps"
+set interfaces ae1 unit 304 vlan-id 304
+set interfaces ae1 unit 304 family inet address 10.104.64.153/30
+set routing-instances INTERNET interface ae1.304
+
+set interfaces ae1 unit 305 description "IRS:RETAIL-ARGENTINA"
+set interfaces ae1 unit 305 vlan-id 305
+set interfaces ae1 unit 305 family inet address 10.104.168.57/30
+set routing-instances INTERNET interface ae1.305
+set routing-instances INTERNET routing-options static route 181.30.107.64/29 next-hop 10.104.168.58 tag 1
+
+set interfaces ae1 unit 306 description "IRS:RETAIL-ARGENTINA"
+set interfaces ae1 unit 306 vlan-id 306
+set interfaces ae1 unit 306 family inet address 10.104.168.53/30
+set routing-instances INTERNET interface ae1.306
+set routing-instances INTERNET routing-options static route 181.30.107.56/29 next-hop 10.104.168.54 tag 1
+
+set interfaces ae1 unit 308 description "CLI_L3:IRS-Merval"
+set interfaces ae1 unit 308 vlan-id 308
+set interfaces ae1 unit 308 family inet address 10.104.64.1/30
+set routing-instances INTERNET interface ae1.308
+
+set interfaces ae1 unit 309 description "CLI_L3:IRS-SMSV"
+set interfaces ae1 unit 309 vlan-id 309
+set interfaces ae1 unit 309 family inet address 10.104.64.53/30
+set routing-instances INTERNET interface ae1.309
+
+set interfaces ae1 unit 310 description "CLI_L3:IRS-Sushi_Club"
+set interfaces ae1 unit 310 vlan-id 310
+set interfaces ae1 unit 310 family inet address 10.104.64.129/30
+set routing-instances INTERNET interface ae1.310
+set routing-instances INTERNET routing-options static route 200.127.150.152/29 next-hop 10.104.64.130 tag 1
+
+set interfaces ae1 unit 311 description "FCORP:INTERNET DEDICADO:id_cliente:BOLD GAMING SA:prod_id:3Mbps"
+set interfaces ae1 unit 311 vlan-id 311
+set interfaces ae1 unit 311 family inet address 10.104.64.201/30
+set routing-instances INTERNET interface ae1.311
+set routing-instances INTERNET routing-options static route 181.30.8.240/29 next-hop 10.104.64.202 tag 1
+
+set interfaces ae1 unit 340 description "CLI_L3:IRS-Surcos_y_Corrales"
+set interfaces ae1 unit 340 vlan-id 340
+set interfaces ae1 unit 340 family inet address 10.104.64.29/30
+set routing-instances INTERNET interface ae1.340
+
+set interfaces ae1 unit 356 description "CLI_L3:IRS-Casa_Hutton"
+set interfaces ae1 unit 356 vlan-id 356
+set interfaces ae1 unit 356 family inet address 10.104.64.45/30
+set routing-instances INTERNET interface ae1.356
+
+set interfaces ae1 unit 378 description "CLI_L3:IRS-Iturria"
+set interfaces ae1 unit 378 vlan-id 378
+set interfaces ae1 unit 378 family inet address 10.104.64.57/30
+set routing-instances INTERNET interface ae1.378
+
+set interfaces ae1 unit 401 description "CLI_L3:IRS-Diario_La_nueva_provincia"
+set interfaces ae1 unit 401 vlan-id 401
+set interfaces ae1 unit 401 family inet address 10.104.64.65/30
+set routing-instances INTERNET interface ae1.401
+set routing-instances INTERNET routing-options static route 200.127.155.40/29 next-hop 10.104.64.66 tag 1
+
+set interfaces ae2 unit 300 description "FCORP-INTERNET_DEDICADO-30999002095-COMITE_TECNICO_EJECUTIVO_MUNICIPALIDAD_DE_BAHIA_BLANCA-86186511-1Mbps"
+set interfaces ae2 unit 300 vlan-id 300
+set interfaces ae2 unit 300 family inet address 10.104.64.93/30
+set routing-instances INTERNET interface ae2.300
+set routing-instances INTERNET routing-options static route 181.30.20.176/29 next-hop 10.104.64.94 tag 1
+
+set interfaces ae2 unit 301 description "FCORP:INTERNET DEDICADO:id_Cliente:BAHIA BLANCA SHOPPING:prod_id:20MBps"
+set interfaces ae2 unit 301 vlan-id 301
+set interfaces ae2 unit 301 family inet address 10.104.64.97/30
+set routing-instances INTERNET interface ae2.301
+set routing-instances INTERNET routing-options static route 181.30.12.248/29 next-hop 10.104.64.98 tag 1
+
+set interfaces ae2 unit 302 description "FCORP-INTERNET_DEDICADO-30712184430-AVATURE_SRL-90440103-10Mbps"
+set interfaces ae2 unit 302 vlan-id 302
+set interfaces ae2 unit 302 family inet address 10.104.64.121/30
+set routing-instances INTERNET interface ae2.302
+set routing-instances INTERNET routing-options static route 181.30.24.136/29 next-hop 10.104.64.122 tag 1
+
+set interfaces ae2 unit 303 description "FCORP-INTERNET_DEDICADO-30517573139-AUTONAUTICA_SUR_SRL-93558570-12Mbps"
+set interfaces ae2 unit 303 vlan-id 303
+set interfaces ae2 unit 303 family inet address 10.104.64.141/30
+set routing-instances INTERNET interface ae2.303
+set routing-instances INTERNET routing-options static route 181.30.43.112/29 next-hop 10.104.64.142 tag 1
+
+set interfaces ae2 unit 304 description "FCORP-INTERNET_DEDICADO-30555888925-LABORATORIOS_IACA-93593942-5Mbps"
+set interfaces ae2 unit 304 vlan-id 304
+set interfaces ae2 unit 304 family inet address 10.104.64.145/30
+set routing-instances INTERNET interface ae2.304
+
+set interfaces ae2 unit 305 description "FCORP-INTERNET_DEDICADO-30555888925-LABORATORIOS_IACA-93593520-10Mbps"
+set interfaces ae2 unit 305 vlan-id 305
+set interfaces ae2 unit 305 family inet address 10.104.64.149/30
+set routing-instances INTERNET interface ae2.305
+
+set interfaces ae2 unit 306 description "IRS:SUR_EXCLUSIVOS_SA-10Mbps"
+set interfaces ae2 unit 306 vlan-id 306
+set interfaces ae2 unit 306 family inet address 10.104.168.61/30
+set routing-instances INTERNET interface ae2.306
+set routing-instances INTERNET routing-options static route 181.30.110.64/29 next-hop 10.104.168.62 tag 1
+
+set interfaces ae2 unit 310 description "FCORP-INTERNET_DEDICADO-30664149113-CONSORCIO_DE_GESTION_DEL_PUERTO_DE_BAHIA_BLANCA-95798499-10Mbps"
+set interfaces ae2 unit 310 vlan-id 310
+set interfaces ae2 unit 310 family inet address 10.104.194.37/30
+set routing-instances INTERNET interface ae2.310
+set routing-instances INTERNET routing-options static route 181.30.51.64/29 next-hop 10.104.194.38 tag 1
+
+set interfaces ae2 unit 311 description "FCORP-INTERNET_DEDICADO-FERNANDO_JAVIER_LASIVITA-138872344-30Mbps"
+set interfaces ae2 unit 311 vlan-id 311
+set interfaces ae2 unit 311 family inet address 10.104.168.29/30
+set routing-instances INTERNET interface ae2.311
+set routing-instances INTERNET routing-options static route 181.30.97.56/29 next-hop 10.104.168.30 tag 1
+
+set interfaces ae2 unit 314 description "FCORP:INTERNET DEDICADO:30711603472:BAHIA TRANSPORTE SAPEM:68295751:3Mbps"
+set interfaces ae2 unit 314 vlan-id 314
+set interfaces ae2 unit 314 family inet address 10.104.64.161/30
+set routing-instances INTERNET interface ae2.314
+set routing-instances INTERNET routing-options static route 181.30.8.248/29 next-hop 10.104.64.162 tag 1
+
+set interfaces ae4 unit 300 description "IRS:HEIDT_Y_ASOCIADOS_SA-20Mbps"
+set interfaces ae4 unit 300 vlan-id 300
+set interfaces ae4 unit 300 family inet address 10.104.168.17/30
+set routing-instances INTERNET interface ae4.300
+set routing-instances INTERNET routing-options static route 181.30.96.40/29 next-hop 10.104.168.18 tag 1
+
+set interfaces ae4 unit 301 description "FCORP-INTERNET-DEDICADO-132881644-JUNCADELLA-4Mbps"
+set interfaces ae4 unit 301 vlan-id 301
+set interfaces ae4 unit 301 family inet address 10.104.168.25/30
+set routing-instances INTERNET interface ae4.301
+set routing-instances INTERNET routing-options static route 181.30.100.160/29 next-hop 10.104.168.26 tag 1
+
+set interfaces ae4 unit 302 description "IRS:NAVARRO_S.A-10Mbps"
+set interfaces ae4 unit 302 vlan-id 302
+set interfaces ae4 unit 302 family inet address 10.104.168.45/30
+set routing-instances INTERNET interface ae4.302
+set routing-instances INTERNET routing-options static route 181.30.105.128/29 next-hop 10.104.168.46 tag 1
+
+set interfaces ae3 unit 300 description "IRS:BAPIRAM-5Mbps"
+set interfaces ae3 unit 300 vlan-id 300
+set interfaces ae3 unit 300 family inet address 10.104.168.13/30
+set routing-instances INTERNET interface ae3.300
+set routing-instances INTERNET routing-options static route 181.30.95.128/29 next-hop 10.104.168.14 tag 1
+
+set interfaces ae3 unit 301 description "FCORP-INTERNET_DEDICADO-30707914692-TARJETA_AUTOMATICA_SA-103466224-1Mbps"
+set interfaces ae3 unit 301 vlan-id 301
+set interfaces ae3 unit 301 family inet address 10.104.64.169/30
+set routing-instances INTERNET interface ae3.301
+set routing-instances INTERNET routing-options static route 181.30.54.40/29 next-hop 10.104.64.170 tag 1
+
+set interfaces ae3 unit 302 description "FCORP-INTERNET_DEDICADO-30540889356-CODIMAT_SA-102146454-5Mbps"
+set interfaces ae3 unit 302 vlan-id 302
+set interfaces ae3 unit 302 family inet address 10.104.64.177/30
+set routing-instances INTERNET interface ae3.302
+set routing-instances INTERNET routing-options static route 181.30.54.168/29 next-hop 10.104.64.178 tag 1
+
+set interfaces ae3 unit 303 description "FCORP-INTERNET_DEDICADO-30500006613-BANCO_PATAGONIA_SA-105618141-1Mbps"
+set interfaces ae3 unit 303 vlan-id 303
+set interfaces ae3 unit 303 family inet address 10.104.64.181/30
+set routing-instances INTERNET interface ae3.303
+
+set interfaces ae3 unit 304 description "FCORP-INTERNET_DEDICADO-30526874249-FRAVEGA_SACIEI-105540875-10Mbps"
+set interfaces ae3 unit 304 vlan-id 304
+set interfaces ae3 unit 304 family inet address 10.104.64.205/30
+set routing-instances INTERNET interface ae3.304
+set routing-instances INTERNET routing-options static route 181.30.63.64/29 next-hop 10.104.64.206 tag 1
+
+set interfaces ae3 unit 305 description "FCORP-INTERNET_DEDICADO-30670514818-AUTOS_DEL_SUR_SA-110422829-5Mbps"
+set interfaces ae3 unit 305 vlan-id 305
+set interfaces ae3 unit 305 family inet address 10.104.64.209/30
+set routing-instances INTERNET interface ae3.305
+set routing-instances INTERNET routing-options static route 181.30.65.136/29 next-hop 10.104.64.210 tag 1
+
+set interfaces ae3 unit 306 description "FCORP-INTERNET_DEDICADO-30538880627-DROGUERIA_DEL_SUD_SA-106530245-9Mbps"
+set interfaces ae3 unit 306 vlan-id 306
+set interfaces ae3 unit 306 family inet address 10.104.64.217/30
+set routing-instances INTERNET interface ae3.306
+
+set interfaces ae3 unit 307 description "FCORP-INTERNET_DEDICADO-30681202834-NIKANT_TOUR_SA-111911080-5Mbps"
+set interfaces ae3 unit 307 vlan-id 307
+set interfaces ae3 unit 307 family inet address 10.104.64.225/30
+set routing-instances INTERNET interface ae3.307
+set routing-instances INTERNET routing-options static route 181.30.66.240/29 next-hop 10.104.64.226 tag 1
+
+set interfaces ae3 unit 308 description "FCORP-INTERNET_DEDICADO-30541849307-DIETRICH_SA-111588294-3Mbps"
+set interfaces ae3 unit 308 vlan-id 308
+set interfaces ae3 unit 308 family inet address 10.104.64.233/30
+set routing-instances INTERNET interface ae3.308
+
+set interfaces ae3 unit 309 description "FCORP-INTERNET_DEDICADO-30610252334-ARCOS_DORADOS_ARGENTINA_SA-103104913-10Mbps"
+set interfaces ae3 unit 309 vlan-id 309
+set interfaces ae3 unit 309 family inet address 10.104.64.241/30
+set routing-instances INTERNET interface ae3.309
+
+set interfaces ae3 unit 310 description "FCORP-INTERNET_DEDICADO-30541849307-DIETRICH_SA-111588294-3Mbps"
+set interfaces ae3 unit 310 vlan-id 310
+set interfaces ae3 unit 310 family inet address 10.104.64.229/30
+set routing-instances INTERNET interface ae3.310
+
+set interfaces ae3 unit 311 description "FCORP-INTERNET_DEDICADO-30714140341-EXPEREO_ARGENTINA-124432732-2Mbps"
+set interfaces ae3 unit 311 vlan-id 311
+set interfaces ae3 unit 311 family inet address 10.104.168.9/30
+set routing-instances INTERNET interface ae3.311
+set routing-instances INTERNET routing-options static route 181.30.88.240/29 next-hop 10.104.168.10 tag 1
+
+set interfaces ae3 unit 312 description "IRS:AVATURE_SRL-10Mbps"
+set interfaces ae3 unit 312 vlan-id 312
+set interfaces ae3 unit 312 family inet address 10.104.168.49/30
+set routing-instances INTERNET interface ae3.312
+set routing-instances INTERNET routing-options static route 181.30.190.184/29 next-hop 10.104.168.50 tag 1
+
+set interfaces ae3 unit 320 description "FCORP-INTERNET_DEDICADO-30610252334-ARCOS_DORADOS_ARGENTINA_SA-103155525-10Mbps"
+set interfaces ae3 unit 320 vlan-id 320
+set interfaces ae3 unit 320 family inet address 10.104.64.249/30
+set routing-instances INTERNET interface ae3.320
+
+set interfaces ae3 unit 351 description "CLI_L3:IRS-Sistemas_Globales"
+set interfaces ae3 unit 351 vlan-id 351
+set interfaces ae3 unit 351 family inet address 10.104.64.61/30
+set routing-instances INTERNET interface ae3.351
+set routing-instances INTERNET routing-options static route 200.127.146.64/29 next-hop 10.104.64.62 tag 1
+
+set routing-instances VRF-BANCO-CREDICOOP route-distinguisher 1.1.1.1:15089
+set routing-instances VRF-BANCO-CREDICOOP vrf-target target:64600:15089
+set routing-instances VRF-BANCO-CREDICOOP vrf-import imp-VRF-BANCO-CREDICOOP
+set routing-instances VRF-BANCO-CREDICOOP vrf-export exp-VRF-BANCO-CREDICOOP
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term import-redes-privadas from community VRF-BANCO-CREDICOOP
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term import-gestion then accept
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term default-reject then reject
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-redes-privadas then community add VRF-BANCO-CREDICOOP
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term default-reject then reject
+set policy-options community VRF-BANCO-CREDICOOP members target:64600:15089
+
+set interfaces ae1 unit 307 description "CLI_VPNv4:Credicoop-BahiaBlanca"
+set interfaces ae1 unit 307 vlan-id 307
+set interfaces ae1 unit 307 family inet address 10.104.64.25/30
+set routing-instances VRF-BANCO-CREDICOOP interface ae1.307
+set routing-instances VRF-BANCO-CREDICOOP protocols bgp group CPE-65002 type external
+set routing-instances VRF-BANCO-CREDICOOP protocols bgp group CPE-65002 description "CLI_VPNv4:Credicoop-BahiaBlanca"
+set routing-instances VRF-BANCO-CREDICOOP protocols bgp group CPE-65002 peer-as 65002
+set routing-instances VRF-BANCO-CREDICOOP protocols bgp group CPE-65002 neighbor 10.104.64.26
+
+set routing-instances VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA route-distinguisher 1.1.1.1:15057
+set routing-instances VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA vrf-target target:64600:15057
+set routing-instances VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA vrf-import imp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA
+set routing-instances VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA vrf-export exp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA
+set policy-options policy-statement imp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term import-redes-privadas from community VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA
+set policy-options policy-statement imp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term export-redes-privadas then community add VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA
+set policy-options policy-statement exp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA term default-reject then reject
+set policy-options community VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA members target:64600:15057
+
+set interfaces ae1 unit 806 description "CLI_VPNv4:Zurich"
+set interfaces ae1 unit 806 vlan-id 806
+set interfaces ae1 unit 806 family inet address 10.104.64.69/30
+set routing-instances VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA interface ae1.806
+set routing-instances VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA protocols bgp group CPE-65005 type external
+set routing-instances VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA protocols bgp group CPE-65005 description "CLI_VPNv4:Zurich"
+set routing-instances VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA protocols bgp group CPE-65005 peer-as 65005
+set routing-instances VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA protocols bgp group CPE-65005 neighbor 10.104.64.70
+
+set routing-instances VRF-CENCOSUD-SA route-distinguisher 1.1.1.1:15027
+set routing-instances VRF-CENCOSUD-SA vrf-target target:64600:15027
+set routing-instances VRF-CENCOSUD-SA vrf-import imp-VRF-CENCOSUD-SA
+set routing-instances VRF-CENCOSUD-SA vrf-export exp-VRF-CENCOSUD-SA
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term import-redes-privadas from community VRF-CENCOSUD-SA
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-redes-privadas then community add VRF-CENCOSUD-SA
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term default-reject then reject
+set policy-options community VRF-CENCOSUD-SA members target:64600:15027
+
+set interfaces ae1 unit 816 description "FCORP:VPN:id_cliente:CENCOSUD SA:prod_id:1Mbps"
+set interfaces ae1 unit 816 vlan-id 816
+set interfaces ae1 unit 816 family inet address 172.24.49.213/30
+set routing-instances VRF-CENCOSUD-SA interface ae1.816
+set routing-instances VRF-CENCOSUD-SA protocols bgp group CPE-64704 type external
+set routing-instances VRF-CENCOSUD-SA protocols bgp group CPE-64704 description "VRF:FCORP:prod_id:Capitán Martínez, 1356"
+set routing-instances VRF-CENCOSUD-SA protocols bgp group CPE-64704 peer-as 64704
+set routing-instances VRF-CENCOSUD-SA protocols bgp group CPE-64704 neighbor 172.24.49.214
+
+set routing-instances VRF-CENCOSUD-SA route-distinguisher 1.1.1.1:15027
+set routing-instances VRF-CENCOSUD-SA vrf-target target:64600:15027
+set routing-instances VRF-CENCOSUD-SA vrf-import imp-VRF-CENCOSUD-SA
+set routing-instances VRF-CENCOSUD-SA vrf-export exp-VRF-CENCOSUD-SA
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term import-redes-privadas from community VRF-CENCOSUD-SA
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-CENCOSUD-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-redes-privadas then community add VRF-CENCOSUD-SA
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-CENCOSUD-SA term default-reject then reject
+set policy-options community VRF-CENCOSUD-SA members target:64600:15027
+
+set interfaces ae1 unit 817 description "CLI_VPNv4:Cencosud-BBlanca-2"
+set interfaces ae1 unit 817 vlan-id 817
+set interfaces ae1 unit 817 family inet address 172.24.49.217/30
+set routing-instances VRF-CENCOSUD-SA interface ae1.817
+set routing-instances VRF-CENCOSUD-SA protocols bgp group CPE-64705 type external
+set routing-instances VRF-CENCOSUD-SA protocols bgp group CPE-64705 description "CLI_VPNv4:Cencosud-BBlanca-2"
+set routing-instances VRF-CENCOSUD-SA protocols bgp group CPE-64705 peer-as 64705
+set routing-instances VRF-CENCOSUD-SA protocols bgp group CPE-64705 neighbor 172.24.49.218
+
+set routing-instances VRF-UTN route-distinguisher 1.1.1.1:15045
+set routing-instances VRF-UTN vrf-target target:64600:15045
+set routing-instances VRF-UTN vrf-import imp-VRF-UTN
+set routing-instances VRF-UTN vrf-export exp-VRF-UTN
+set policy-options policy-statement imp-VRF-UTN term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-UTN term import-redes-privadas from community VRF-UTN
+set policy-options policy-statement imp-VRF-UTN term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-UTN term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-UTN term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-UTN term import-gestion then accept
+set policy-options policy-statement imp-VRF-UTN term default-reject then reject
+set policy-options policy-statement exp-VRF-UTN term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-UTN term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-UTN term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-UTN term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-UTN term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-UTN term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-UTN term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-UTN term export-redes-privadas then community add VRF-UTN
+set policy-options policy-statement exp-VRF-UTN term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-UTN term default-reject then reject
+set policy-options community VRF-UTN members target:64600:15045
+
+set interfaces ae1 unit 844 description "CLI_VPNv4:UTN-Bahia_Blanca"
+set interfaces ae1 unit 844 vlan-id 844
+set interfaces ae1 unit 844 family inet address 10.104.64.21/30
+set routing-instances VRF-UTN interface ae1.844
+set routing-instances VRF-UTN protocols bgp group CPE-65010 type external
+set routing-instances VRF-UTN protocols bgp group CPE-65010 description "CLI_VPNv4:UTN-Bahia_Blanca"
+set routing-instances VRF-UTN protocols bgp group CPE-65010 peer-as 65010
+set routing-instances VRF-UTN protocols bgp group CPE-65010 neighbor 10.104.64.22
+
+set routing-instances VRF-FCORP-BOLDT-GAMING-SA route-distinguisher 1.1.1.1:15192
+set routing-instances VRF-FCORP-BOLDT-GAMING-SA vrf-target target:64600:15192
+set routing-instances VRF-FCORP-BOLDT-GAMING-SA vrf-import imp-VRF-FCORP-BOLDT-GAMING-SA
+set routing-instances VRF-FCORP-BOLDT-GAMING-SA vrf-export exp-VRF-FCORP-BOLDT-GAMING-SA
+set policy-options policy-statement imp-VRF-FCORP-BOLDT-GAMING-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-BOLDT-GAMING-SA term import-redes-privadas from community VRF-FCORP-BOLDT-GAMING-SA
+set policy-options policy-statement imp-VRF-FCORP-BOLDT-GAMING-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-FCORP-BOLDT-GAMING-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-BOLDT-GAMING-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-FCORP-BOLDT-GAMING-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-FCORP-BOLDT-GAMING-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-FCORP-BOLDT-GAMING-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-BOLDT-GAMING-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-BOLDT-GAMING-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-BOLDT-GAMING-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-FCORP-BOLDT-GAMING-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-FCORP-BOLDT-GAMING-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-FCORP-BOLDT-GAMING-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-BOLDT-GAMING-SA term export-redes-privadas then community add VRF-FCORP-BOLDT-GAMING-SA
+set policy-options policy-statement exp-VRF-FCORP-BOLDT-GAMING-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-FCORP-BOLDT-GAMING-SA term default-reject then reject
+set policy-options community VRF-FCORP-BOLDT-GAMING-SA members target:64600:15192
+
+set interfaces ae1 unit 846 description "CLI_VPNv4:Boldt"
+set interfaces ae1 unit 846 vlan-id 846
+set interfaces ae1 unit 846 family inet address 10.104.64.49/30
+set routing-instances VRF-FCORP-BOLDT-GAMING-SA interface ae1.846
+set routing-instances VRF-FCORP-BOLDT-GAMING-SA protocols bgp group CPE-65005 type external
+set routing-instances VRF-FCORP-BOLDT-GAMING-SA protocols bgp group CPE-65005 description "CLI_VPNv4:Boldt"
+set routing-instances VRF-FCORP-BOLDT-GAMING-SA protocols bgp group CPE-65005 peer-as 65005
+set routing-instances VRF-FCORP-BOLDT-GAMING-SA protocols bgp group CPE-65005 neighbor 10.104.64.50
+
+set routing-instances VRF-PETROBRAS-ENERGIA-SA route-distinguisher 1.1.1.1:15011
+set routing-instances VRF-PETROBRAS-ENERGIA-SA vrf-target target:64600:15011
+set routing-instances VRF-PETROBRAS-ENERGIA-SA vrf-import imp-VRF-PETROBRAS-ENERGIA-SA
+set routing-instances VRF-PETROBRAS-ENERGIA-SA vrf-export exp-VRF-PETROBRAS-ENERGIA-SA
+set policy-options policy-statement imp-VRF-PETROBRAS-ENERGIA-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-PETROBRAS-ENERGIA-SA term import-redes-privadas from community VRF-PETROBRAS-ENERGIA-SA
+set policy-options policy-statement imp-VRF-PETROBRAS-ENERGIA-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-PETROBRAS-ENERGIA-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-PETROBRAS-ENERGIA-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-PETROBRAS-ENERGIA-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-PETROBRAS-ENERGIA-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-PETROBRAS-ENERGIA-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-PETROBRAS-ENERGIA-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-PETROBRAS-ENERGIA-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-PETROBRAS-ENERGIA-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-PETROBRAS-ENERGIA-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-PETROBRAS-ENERGIA-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-PETROBRAS-ENERGIA-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-PETROBRAS-ENERGIA-SA term export-redes-privadas then community add VRF-PETROBRAS-ENERGIA-SA
+set policy-options policy-statement exp-VRF-PETROBRAS-ENERGIA-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-PETROBRAS-ENERGIA-SA term default-reject then reject
+set policy-options community VRF-PETROBRAS-ENERGIA-SA members target:64600:15011
+
+set interfaces ae1 unit 851 description "CLI_VPNv4:Petrobras"
+set interfaces ae1 unit 851 vlan-id 851
+set interfaces ae1 unit 851 family inet address 10.104.64.33/30
+set routing-instances VRF-PETROBRAS-ENERGIA-SA interface ae1.851
+set routing-instances VRF-PETROBRAS-ENERGIA-SA protocols bgp group CPE-65002 type external
+set routing-instances VRF-PETROBRAS-ENERGIA-SA protocols bgp group CPE-65002 description "CLI_VPNv4:CLI_VPNv4:Petrobras"
+set routing-instances VRF-PETROBRAS-ENERGIA-SA protocols bgp group CPE-65002 peer-as 65002
+set routing-instances VRF-PETROBRAS-ENERGIA-SA protocols bgp group CPE-65002 neighbor 10.104.64.34
+
+set routing-instances VRF-FCORP-MONROE-AMERICANA route-distinguisher 1.1.1.1:15131
+set routing-instances VRF-FCORP-MONROE-AMERICANA vrf-target target:64600:15131
+set routing-instances VRF-FCORP-MONROE-AMERICANA vrf-import imp-VRF-FCORP-MONROE-AMERICANA
+set routing-instances VRF-FCORP-MONROE-AMERICANA vrf-export exp-VRF-FCORP-MONROE-AMERICANA
+set policy-options policy-statement imp-VRF-FCORP-MONROE-AMERICANA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-MONROE-AMERICANA term import-redes-privadas from community VRF-FCORP-MONROE-AMERICANA
+set policy-options policy-statement imp-VRF-FCORP-MONROE-AMERICANA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-FCORP-MONROE-AMERICANA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-MONROE-AMERICANA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-FCORP-MONROE-AMERICANA term import-gestion then accept
+set policy-options policy-statement imp-VRF-FCORP-MONROE-AMERICANA term default-reject then reject
+set policy-options policy-statement exp-VRF-FCORP-MONROE-AMERICANA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-MONROE-AMERICANA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-MONROE-AMERICANA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-MONROE-AMERICANA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-FCORP-MONROE-AMERICANA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-FCORP-MONROE-AMERICANA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-FCORP-MONROE-AMERICANA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-MONROE-AMERICANA term export-redes-privadas then community add VRF-FCORP-MONROE-AMERICANA
+set policy-options policy-statement exp-VRF-FCORP-MONROE-AMERICANA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-FCORP-MONROE-AMERICANA term default-reject then reject
+set policy-options community VRF-FCORP-MONROE-AMERICANA members target:64600:15131
+
+set interfaces ae1 unit 888 description "FCORP:VPN:30517059095:Monroe:Americana_SA:67229507:4Mbps"
+set interfaces ae1 unit 888 vlan-id 888
+set interfaces ae1 unit 888 family inet address 10.104.64.77/30
+set routing-instances VRF-FCORP-MONROE-AMERICANA interface ae1.888
+set routing-instances VRF-FCORP-MONROE-AMERICANA protocols bgp group CPE-65001 type external
+set routing-instances VRF-FCORP-MONROE-AMERICANA protocols bgp group CPE-65001 description "VRF:FCORP:67229507:DONADO /ALT/ 1430"
+set routing-instances VRF-FCORP-MONROE-AMERICANA protocols bgp group CPE-65001 peer-as 65001
+set routing-instances VRF-FCORP-MONROE-AMERICANA protocols bgp group CPE-65001 neighbor 10.104.64.78
+
+set routing-instances VRF-CAJA-DE-SEGUROS-SA-2 route-distinguisher 1.1.1.1:15071
+set routing-instances VRF-CAJA-DE-SEGUROS-SA-2 vrf-target target:64600:15071
+set routing-instances VRF-CAJA-DE-SEGUROS-SA-2 vrf-import imp-VRF-CAJA-DE-SEGUROS-SA-2
+set routing-instances VRF-CAJA-DE-SEGUROS-SA-2 vrf-export exp-VRF-CAJA-DE-SEGUROS-SA-2
+set policy-options policy-statement imp-VRF-CAJA-DE-SEGUROS-SA-2 term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-CAJA-DE-SEGUROS-SA-2 term import-redes-privadas from community VRF-CAJA-DE-SEGUROS-SA-2
+set policy-options policy-statement imp-VRF-CAJA-DE-SEGUROS-SA-2 term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-CAJA-DE-SEGUROS-SA-2 term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-CAJA-DE-SEGUROS-SA-2 term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-CAJA-DE-SEGUROS-SA-2 term import-gestion then accept
+set policy-options policy-statement imp-VRF-CAJA-DE-SEGUROS-SA-2 term default-reject then reject
+set policy-options policy-statement exp-VRF-CAJA-DE-SEGUROS-SA-2 term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-CAJA-DE-SEGUROS-SA-2 term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-CAJA-DE-SEGUROS-SA-2 term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-CAJA-DE-SEGUROS-SA-2 term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-CAJA-DE-SEGUROS-SA-2 term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-CAJA-DE-SEGUROS-SA-2 term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-CAJA-DE-SEGUROS-SA-2 term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-CAJA-DE-SEGUROS-SA-2 term export-redes-privadas then community add VRF-CAJA-DE-SEGUROS-SA-2
+set policy-options policy-statement exp-VRF-CAJA-DE-SEGUROS-SA-2 term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-CAJA-DE-SEGUROS-SA-2 term default-reject then reject
+set policy-options community VRF-CAJA-DE-SEGUROS-SA-2 members target:64600:15071
+
+set interfaces ae1 unit 891 description "FCORP:VPN:id_Cliente:La Caja Seguros:prod_id:1Mbps"
+set interfaces ae1 unit 891 vlan-id 891
+set interfaces ae1 unit 891 family inet address 10.104.64.73/30
+set routing-instances VRF-CAJA-DE-SEGUROS-SA-2 interface ae1.891
+set routing-instances VRF-CAJA-DE-SEGUROS-SA-2 protocols bgp group CPE-65012 type external
+set routing-instances VRF-CAJA-DE-SEGUROS-SA-2 protocols bgp group CPE-65012 description "VRF:FCORP:prod_id:Colon 150"
+set routing-instances VRF-CAJA-DE-SEGUROS-SA-2 protocols bgp group CPE-65012 peer-as 65012
+set routing-instances VRF-CAJA-DE-SEGUROS-SA-2 protocols bgp group CPE-65012 neighbor 10.104.64.74
+
+set routing-instances VRF-RENAULT-ARGENTINA-SA route-distinguisher 1.1.1.1:15090
+set routing-instances VRF-RENAULT-ARGENTINA-SA vrf-target target:64600:15090
+set routing-instances VRF-RENAULT-ARGENTINA-SA vrf-import imp-VRF-RENAULT-ARGENTINA-SA
+set routing-instances VRF-RENAULT-ARGENTINA-SA vrf-export exp-VRF-RENAULT-ARGENTINA-SA
+set policy-options policy-statement imp-VRF-RENAULT-ARGENTINA-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-RENAULT-ARGENTINA-SA term import-redes-privadas from community VRF-RENAULT-ARGENTINA-SA
+set policy-options policy-statement imp-VRF-RENAULT-ARGENTINA-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-RENAULT-ARGENTINA-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-RENAULT-ARGENTINA-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-RENAULT-ARGENTINA-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-RENAULT-ARGENTINA-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-RENAULT-ARGENTINA-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-RENAULT-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-RENAULT-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-RENAULT-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-RENAULT-ARGENTINA-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-RENAULT-ARGENTINA-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-RENAULT-ARGENTINA-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-RENAULT-ARGENTINA-SA term export-redes-privadas then community add VRF-RENAULT-ARGENTINA-SA
+set policy-options policy-statement exp-VRF-RENAULT-ARGENTINA-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-RENAULT-ARGENTINA-SA term default-reject then reject
+set policy-options community VRF-RENAULT-ARGENTINA-SA members target:64600:15090
+
+set interfaces ae1 unit 893 description "CLI_L3:VPNV4-Renault"
+set interfaces ae1 unit 893 vlan-id 893
+set interfaces ae1 unit 893 family inet address 10.104.64.37/30
+set routing-instances VRF-RENAULT-ARGENTINA-SA interface ae1.893
+set routing-instances VRF-RENAULT-ARGENTINA-SA protocols bgp group CPE-65020 type external
+set routing-instances VRF-RENAULT-ARGENTINA-SA protocols bgp group CPE-65020 description "CLI_VPNv4:Renault-Bahia_Blanca"
+set routing-instances VRF-RENAULT-ARGENTINA-SA protocols bgp group CPE-65020 peer-as 65020
+set routing-instances VRF-RENAULT-ARGENTINA-SA protocols bgp group CPE-65020 neighbor 10.104.64.38
+
+set routing-instances VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA route-distinguisher 1.1.1.1:15193
+set routing-instances VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA vrf-target target:64600:15193
+set routing-instances VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA vrf-import imp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA
+set routing-instances VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA vrf-export exp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA
+set policy-options policy-statement imp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term import-redes-privadas from community VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA
+set policy-options policy-statement imp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term import-gestion then accept
+set policy-options policy-statement imp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term default-reject then reject
+set policy-options policy-statement exp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term export-redes-privadas then community add VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA
+set policy-options policy-statement exp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA term default-reject then reject
+set policy-options community VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA members target:64600:15193
+
+set interfaces ae2 unit 800 description "FCORP:VPN:30500050310:BERNARDINO RIVADAVIA COOPERATIVA LIMITADA SEGUROS:72591228:2Mbps"
+set interfaces ae2 unit 800 vlan-id 800
+set interfaces ae2 unit 800 family inet address 10.104.64.81/30
+set routing-instances VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA interface ae2.800
+set routing-instances VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA protocols bgp group CPE-65004 type external
+set routing-instances VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA protocols bgp group CPE-65004 description "VRF:FCORP:72591228:FITZ ROY /ALT/ 71"
+set routing-instances VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA protocols bgp group CPE-65004 peer-as 65004
+set routing-instances VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA protocols bgp group CPE-65004 neighbor 10.104.64.82
+
+set routing-instances VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A route-distinguisher 1.1.1.1:15126
+set routing-instances VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A vrf-target target:64600:15126
+set routing-instances VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A vrf-import imp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A
+set routing-instances VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A vrf-export exp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A
+set policy-options policy-statement imp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term import-redes-privadas from community VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A
+set policy-options policy-statement imp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term import-gestion then accept
+set policy-options policy-statement imp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term default-reject then reject
+set policy-options policy-statement exp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term export-redes-privadas then community add VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A
+set policy-options policy-statement exp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A term default-reject then reject
+set policy-options community VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A members target:64600:15126
+
+set interfaces ae2 unit 801 description "FCORP:VPN:30547847586:INDUSTRIAS PUGLIESE SA:69300369:4Mbps"
+set interfaces ae2 unit 801 vlan-id 801
+set interfaces ae2 unit 801 family inet address 10.104.64.189/30
+set routing-instances VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A interface ae2.801
+set routing-instances VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A protocols bgp group CPE-65001 type external
+set routing-instances VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A protocols bgp group CPE-65001 description "VRF:FCORP:69300369:BELGRANO /ALT/ 231"
+set routing-instances VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A protocols bgp group CPE-65001 peer-as 65001
+set routing-instances VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A protocols bgp group CPE-65001 neighbor 10.104.64.190
+
+set routing-instances VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO route-distinguisher 1.1.1.1:15248
+set routing-instances VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO vrf-target target:64600:15248
+set routing-instances VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO vrf-import imp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO
+set routing-instances VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO vrf-export exp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO
+set policy-options policy-statement imp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term import-redes-privadas from community VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO
+set policy-options policy-statement imp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term import-gestion then accept
+set policy-options policy-statement imp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term default-reject then reject
+set policy-options policy-statement exp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term export-redes-privadas then community add VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO
+set policy-options policy-statement exp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO term default-reject then reject
+set policy-options community VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO members target:64600:15248
+
+set interfaces ae2 unit 802 description "FCORP:VPN:30589621499:SUPERMERCADOS MAYORISTAS MAKRO:65606255:2Mbps"
+set interfaces ae2 unit 802 vlan-id 802
+set interfaces ae2 unit 802 family inet address 10.104.64.101/30
+set routing-instances VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO interface ae2.802
+set routing-instances VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO protocols bgp group CPE-65005 type external
+set routing-instances VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO protocols bgp group CPE-65005 description "VRF:FCORP:65606255:SARMIENTO /ALT/ 4162"
+set routing-instances VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO protocols bgp group CPE-65005 peer-as 65005
+set routing-instances VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO protocols bgp group CPE-65005 neighbor 10.104.64.102
+
+set routing-instances VRF-SECURITAS.ARGENTINA-SA route-distinguisher 1.1.1.1:15046
+set routing-instances VRF-SECURITAS.ARGENTINA-SA vrf-target target:64600:15046
+set routing-instances VRF-SECURITAS.ARGENTINA-SA vrf-import imp-VRF-SECURITAS.ARGENTINA-SA
+set routing-instances VRF-SECURITAS.ARGENTINA-SA vrf-export exp-VRF-SECURITAS.ARGENTINA-SA
+set policy-options policy-statement imp-VRF-SECURITAS.ARGENTINA-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-SECURITAS.ARGENTINA-SA term import-redes-privadas from community VRF-SECURITAS.ARGENTINA-SA
+set policy-options policy-statement imp-VRF-SECURITAS.ARGENTINA-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-SECURITAS.ARGENTINA-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-SECURITAS.ARGENTINA-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-SECURITAS.ARGENTINA-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-SECURITAS.ARGENTINA-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-SECURITAS.ARGENTINA-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-SECURITAS.ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-SECURITAS.ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-SECURITAS.ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-SECURITAS.ARGENTINA-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-SECURITAS.ARGENTINA-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-SECURITAS.ARGENTINA-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-SECURITAS.ARGENTINA-SA term export-redes-privadas then community add VRF-SECURITAS.ARGENTINA-SA
+set policy-options policy-statement exp-VRF-SECURITAS.ARGENTINA-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-SECURITAS.ARGENTINA-SA term default-reject then reject
+set policy-options community VRF-SECURITAS.ARGENTINA-SA members target:64600:15046
+
+set interfaces ae2 unit 803 description "FCORP:VPN:30678239549:SECURITAS ARGENTINA S A:73552850:25Mbps"
+set interfaces ae2 unit 803 vlan-id 803
+set interfaces ae2 unit 803 family inet address 10.104.64.85/30
+set routing-instances VRF-SECURITAS.ARGENTINA-SA interface ae2.803
+set routing-instances VRF-SECURITAS.ARGENTINA-SA protocols bgp group CPE-65006 type external
+set routing-instances VRF-SECURITAS.ARGENTINA-SA protocols bgp group CPE-65006 description "VRF:FCORP:73552850:SARMIENTO /ALT/ 751"
+set routing-instances VRF-SECURITAS.ARGENTINA-SA protocols bgp group CPE-65006 peer-as 65006
+set routing-instances VRF-SECURITAS.ARGENTINA-SA protocols bgp group CPE-65006 neighbor 10.104.64.86
+
+set routing-instances VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA route-distinguisher 1.1.1.1:15050
+set routing-instances VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA vrf-target target:64600:15050
+set routing-instances VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA vrf-import imp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA
+set routing-instances VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA vrf-export exp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA
+set policy-options policy-statement imp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term import-redes-privadas from community VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA
+set policy-options policy-statement imp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term export-redes-privadas then community add VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA
+set policy-options policy-statement exp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA term default-reject then reject
+set policy-options community VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA members target:64600:15050
+
+set interfaces ae2 unit 804 description "FCORP-VPN-30500000127-ROYAL_SUN_ALLIANCE_SEGUROS_ARGENTINA_SOCIEDAD_ANONIMA-84801128-2Mbps"
+set interfaces ae2 unit 804 vlan-id 804
+set interfaces ae2 unit 804 family inet address 10.104.64.89/30
+set routing-instances VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA interface ae2.804
+set routing-instances VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA protocols bgp group CPE-65007 type external
+set routing-instances VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA protocols bgp group CPE-65007 description "VRF-FCORP-84801128-SARMIENTO /ALT/ 1119-ROA1.BBO1"
+set routing-instances VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA protocols bgp group CPE-65007 peer-as 65007
+set routing-instances VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA protocols bgp group CPE-65007 neighbor 10.104.64.90
+
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 route-distinguisher 1.1.1.1:15095
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 vrf-target target:64600:15095
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 vrf-import imp-VRF-CPS-COMUNICACIONES-SA-3
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 vrf-export exp-VRF-CPS-COMUNICACIONES-SA-3
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term import-redes-privadas from community VRF-CPS-COMUNICACIONES-SA-3
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term import-gestion then accept
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term default-reject then reject
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-redes-privadas then community add VRF-CPS-COMUNICACIONES-SA-3
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term default-reject then reject
+set policy-options community VRF-CPS-COMUNICACIONES-SA-3 members target:64600:15095
+
+set interfaces ae2 unit 805 description "FCORP-VPN-30696850972-C_P_S_COMUNICACIONES_S_A-86067903-4Mbps"
+set interfaces ae2 unit 805 vlan-id 805
+set interfaces ae2 unit 805 family inet address 10.104.64.105/30
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 interface ae2.805
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 protocols bgp group CPE-65008 type external
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 protocols bgp group CPE-65008 description "VRF-FCORP-86067903-CHICLANA /ALT/ 260-ROA1.BBO1"
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 protocols bgp group CPE-65008 peer-as 65008
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 protocols bgp group CPE-65008 neighbor 10.104.64.106
+
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A route-distinguisher 1.1.1.1:15153
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A vrf-target target:64600:15153
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A vrf-import imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A vrf-export exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term import-redes-privadas from community VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term import-gestion then accept
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term default-reject then reject
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-redes-privadas then community add VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term default-reject then reject
+set policy-options community VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A members target:64600:15153
+
+set interfaces ae2 unit 806 description "FCORP-VPN-30500001735-BANCO_DE_GALICIA_Y_BUENOS_AIRES_SA-88544457-3Mbps"
+set interfaces ae2 unit 806 vlan-id 806
+set interfaces ae2 unit 806 family inet address 10.104.64.109/30
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A interface ae2.806
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A protocols bgp group CPE-65007 type external
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A protocols bgp group CPE-65007 description "VRF-FCORP-88544457-CHICLANA /ALT/ 302-ROA1.BBO1"
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A protocols bgp group CPE-65007 peer-as 65007
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A protocols bgp group CPE-65007 neighbor 10.104.64.110
+
+set routing-instances VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA route-distinguisher 1.1.1.1:15249
+set routing-instances VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA vrf-target target:64600:15249
+set routing-instances VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA vrf-import imp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA
+set routing-instances VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA vrf-export exp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA
+set policy-options policy-statement imp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term import-redes-privadas from community VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA
+set policy-options policy-statement imp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term export-redes-privadas then community add VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA
+set policy-options policy-statement exp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA term default-reject then reject
+set policy-options community VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA members target:64600:15249
+
+set interfaces ae2 unit 807 description "FCORP-VPN-30500056661-ORBIS_COMPANIA_DE_SEGUROS_SA-90075076-2Mbps"
+set interfaces ae2 unit 807 vlan-id 807
+set interfaces ae2 unit 807 family inet address 10.104.64.113/30
+set routing-instances VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA interface ae2.807
+set routing-instances VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA protocols bgp group CPE-65003 type external
+set routing-instances VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA protocols bgp group CPE-65003 description "VRF-FCORP-90075076-ALEM L N ,AV. /ALT/ 912-ROA1.BBO1"
+set routing-instances VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA protocols bgp group CPE-65003 peer-as 65003
+set routing-instances VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA protocols bgp group CPE-65003 neighbor 10.104.64.114
+
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 route-distinguisher 1.1.1.1:15095
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 vrf-target target:64600:15095
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 vrf-import imp-VRF-CPS-COMUNICACIONES-SA-3
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 vrf-export exp-VRF-CPS-COMUNICACIONES-SA-3
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term import-redes-privadas from community VRF-CPS-COMUNICACIONES-SA-3
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term import-gestion then accept
+set policy-options policy-statement imp-VRF-CPS-COMUNICACIONES-SA-3 term default-reject then reject
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-redes-privadas then community add VRF-CPS-COMUNICACIONES-SA-3
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-CPS-COMUNICACIONES-SA-3 term default-reject then reject
+set policy-options community VRF-CPS-COMUNICACIONES-SA-3 members target:64600:15095
+
+set interfaces ae2 unit 809 description "FCORP-VPN-30696850972-C_P_S_COMUNICACIONES_S_A-88491528-8Mbps"
+set interfaces ae2 unit 809 vlan-id 809
+set interfaces ae2 unit 809 family inet address 10.104.64.117/30
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 interface ae2.809
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 protocols bgp group CPE-65013 type external
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 protocols bgp group CPE-65013 description "VRF-FCORP-88491528-BELGRANO /ALT/ 133-ROA1.BBO1"
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 protocols bgp group CPE-65013 peer-as 65013
+set routing-instances VRF-CPS-COMUNICACIONES-SA-3 protocols bgp group CPE-65013 neighbor 10.104.64.118
+
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET route-distinguisher 1.1.1.1:15005
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET vrf-target target:64600:15005
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET vrf-import imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET vrf-export exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term import-redes-privadas from community VRF-AXION-ENERGY-ARGENTINA-INTERNET
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term import-gestion then accept
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term default-reject then reject
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-redes-privadas then community add VRF-AXION-ENERGY-ARGENTINA-INTERNET
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term default-reject then reject
+set policy-options community VRF-AXION-ENERGY-ARGENTINA-INTERNET members target:64600:15005
+
+set interfaces ae2 unit 810 description "FCORP-VPN-30506919009-AXION_ENERGY_ARGENTINA_SA-90768954-3Mbps"
+set interfaces ae2 unit 810 vlan-id 810
+set interfaces ae2 unit 810 family inet address 10.104.64.137/30
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET interface ae2.810
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET protocols bgp group CPE-65079 type external
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET protocols bgp group CPE-65079 description "VRF-FCORP-90768954-SARMIENTO /ALT/ 4114-ROA1.BBO1"
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET protocols bgp group CPE-65079 peer-as 65079
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET protocols bgp group CPE-65079 neighbor 10.104.64.138
+
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA route-distinguisher 1.1.1.1:15004
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA vrf-target target:64600:15004
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA vrf-import imp-VRF-AXION-ENERGY-ARGENTINA-SA
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA vrf-export exp-VRF-AXION-ENERGY-ARGENTINA-SA
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term import-redes-privadas from community VRF-AXION-ENERGY-ARGENTINA-SA
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-redes-privadas then community add VRF-AXION-ENERGY-ARGENTINA-SA
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term default-reject then reject
+set policy-options community VRF-AXION-ENERGY-ARGENTINA-SA members target:64600:15004
+
+set interfaces ae2 unit 811 description "FCORP-VPN-30506919009-AXION_ENERGY_ARGENTINA_SA-90768954-3Mbps"
+set interfaces ae2 unit 811 vlan-id 811
+set interfaces ae2 unit 811 family inet address 10.104.64.137/30
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA interface ae2.811
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA protocols bgp group CPE-65079 type external
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA protocols bgp group CPE-65079 description "VRF-FCORP-90768954-SARMIENTO /ALT/ 4114-ROA1.BBO1"
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA protocols bgp group CPE-65079 peer-as 65079
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA protocols bgp group CPE-65079 neighbor 10.104.64.138
+
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA route-distinguisher 1.1.1.1:15004
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA vrf-target target:64600:15004
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA vrf-import imp-VRF-AXION-ENERGY-ARGENTINA-SA
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA vrf-export exp-VRF-AXION-ENERGY-ARGENTINA-SA
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term import-redes-privadas from community VRF-AXION-ENERGY-ARGENTINA-SA
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-redes-privadas then community add VRF-AXION-ENERGY-ARGENTINA-SA
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-SA term default-reject then reject
+set policy-options community VRF-AXION-ENERGY-ARGENTINA-SA members target:64600:15004
+
+set interfaces ae2 unit 812 description "FCORP-VPN-30506919009-AXION_ENERGY_ARGENTINA_SA-90768125-3Mbps"
+set interfaces ae2 unit 812 vlan-id 812
+set interfaces ae2 unit 812 family inet address 10.104.64.133/30
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA interface ae2.812
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA protocols bgp group CPE-65080 type external
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA protocols bgp group CPE-65080 description "VRF-FCORP-90768125-ALEM L N ,AV. /ALT/ 1086-ROA1.BBO1"
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA protocols bgp group CPE-65080 peer-as 65080
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-SA protocols bgp group CPE-65080 neighbor 10.104.64.134
+
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET route-distinguisher 1.1.1.1:15005
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET vrf-target target:64600:15005
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET vrf-import imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET vrf-export exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term import-redes-privadas from community VRF-AXION-ENERGY-ARGENTINA-INTERNET
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term import-gestion then accept
+set policy-options policy-statement imp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term default-reject then reject
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-redes-privadas then community add VRF-AXION-ENERGY-ARGENTINA-INTERNET
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-AXION-ENERGY-ARGENTINA-INTERNET term default-reject then reject
+set policy-options community VRF-AXION-ENERGY-ARGENTINA-INTERNET members target:64600:15005
+
+set interfaces ae2 unit 813 description "FCORP-VPN-30506919009-AXION_ENERGY_ARGENTINA_SA-90768125-3Mbps"
+set interfaces ae2 unit 813 vlan-id 813
+set interfaces ae2 unit 813 family inet address 10.104.64.133/30
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET interface ae2.813
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET protocols bgp group CPE-65080 type external
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET protocols bgp group CPE-65080 description "VRF-FCORP-90768125-ALEM L N ,AV. /ALT/ 1086-ROA1.BBO1"
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET protocols bgp group CPE-65080 peer-as 65080
+set routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET protocols bgp group CPE-65080 neighbor 10.104.64.134
+
+set routing-instances VRF-CORREO-ANDREANI-SA route-distinguisher 1.1.1.1:15063
+set routing-instances VRF-CORREO-ANDREANI-SA vrf-target target:64600:15063
+set routing-instances VRF-CORREO-ANDREANI-SA vrf-import imp-VRF-CORREO-ANDREANI-SA
+set routing-instances VRF-CORREO-ANDREANI-SA vrf-export exp-VRF-CORREO-ANDREANI-SA
+set policy-options policy-statement imp-VRF-CORREO-ANDREANI-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-CORREO-ANDREANI-SA term import-redes-privadas from community VRF-CORREO-ANDREANI-SA
+set policy-options policy-statement imp-VRF-CORREO-ANDREANI-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-CORREO-ANDREANI-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-CORREO-ANDREANI-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-CORREO-ANDREANI-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-CORREO-ANDREANI-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-CORREO-ANDREANI-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-CORREO-ANDREANI-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-CORREO-ANDREANI-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-CORREO-ANDREANI-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-CORREO-ANDREANI-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-CORREO-ANDREANI-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-CORREO-ANDREANI-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-CORREO-ANDREANI-SA term export-redes-privadas then community add VRF-CORREO-ANDREANI-SA
+set policy-options policy-statement exp-VRF-CORREO-ANDREANI-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-CORREO-ANDREANI-SA term default-reject then reject
+set policy-options community VRF-CORREO-ANDREANI-SA members target:64600:15063
+
+set interfaces ae4 unit 800 description "VPNV4-CORREO_ANDREANI_SA-2Mbps"
+set interfaces ae4 unit 800 vlan-id 800
+set interfaces ae4 unit 800 family inet address 10.104.168.21/30
+set routing-instances VRF-CORREO-ANDREANI-SA interface ae4.800
+set routing-instances VRF-CORREO-ANDREANI-SA protocols bgp group CPE-65045 type external
+set routing-instances VRF-CORREO-ANDREANI-SA protocols bgp group CPE-65045 description "VPNV4-SAN MARTIN /ALT/ 351"
+set routing-instances VRF-CORREO-ANDREANI-SA protocols bgp group CPE-65045 peer-as 65045
+set routing-instances VRF-CORREO-ANDREANI-SA protocols bgp group CPE-65045 neighbor 10.104.168.22
+
+set routing-instances VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 route-distinguisher 1.1.1.1:15101
+set routing-instances VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 vrf-target target:64600:15101
+set routing-instances VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 vrf-import imp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2
+set routing-instances VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 vrf-export exp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2
+set policy-options policy-statement imp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term import-redes-privadas from community VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2
+set policy-options policy-statement imp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term import-gestion then accept
+set policy-options policy-statement imp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term default-reject then reject
+set policy-options policy-statement exp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term export-redes-privadas then community add VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2
+set policy-options policy-statement exp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 term default-reject then reject
+set policy-options community VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 members target:64600:15101
+
+set interfaces ae4 unit 801 description "VPNV4-COMPANIA_DE_SEGUROS_LA_MERCANTIL_ANDINA_SA-4Mbps"
+set interfaces ae4 unit 801 vlan-id 801
+set interfaces ae4 unit 801 family inet address 10.104.168.37/30
+set routing-instances VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 interface ae4.801
+set routing-instances VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 protocols bgp group CPE-65011 type external
+set routing-instances VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 protocols bgp group CPE-65011 description "VPNV4-CHINCLANA_398"
+set routing-instances VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 protocols bgp group CPE-65011 peer-as 65011
+set routing-instances VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 protocols bgp group CPE-65011 neighbor 10.104.168.38
+
+set routing-instances VRF-BANCO-CREDICOOP route-distinguisher 1.1.1.1:15089
+set routing-instances VRF-BANCO-CREDICOOP vrf-target target:64600:15089
+set routing-instances VRF-BANCO-CREDICOOP vrf-import imp-VRF-BANCO-CREDICOOP
+set routing-instances VRF-BANCO-CREDICOOP vrf-export exp-VRF-BANCO-CREDICOOP
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term import-redes-privadas from community VRF-BANCO-CREDICOOP
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term import-gestion then accept
+set policy-options policy-statement imp-VRF-BANCO-CREDICOOP term default-reject then reject
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-redes-privadas then community add VRF-BANCO-CREDICOOP
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-BANCO-CREDICOOP term default-reject then reject
+set policy-options community VRF-BANCO-CREDICOOP members target:64600:15089
+
+set interfaces ae4 unit 802 description "VPNV4-Credicoop-1Mbps"
+set interfaces ae4 unit 802 vlan-id 802
+set interfaces ae4 unit 802 family inet address 10.104.168.41/30
+set routing-instances VRF-BANCO-CREDICOOP interface ae4.802
+set routing-instances VRF-BANCO-CREDICOOP protocols bgp group CPE-65012 type external
+set routing-instances VRF-BANCO-CREDICOOP protocols bgp group CPE-65012 description "VPNV4-"
+set routing-instances VRF-BANCO-CREDICOOP protocols bgp group CPE-65012 peer-as 65012
+set routing-instances VRF-BANCO-CREDICOOP protocols bgp group CPE-65012 neighbor 10.104.168.42
+
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A route-distinguisher 1.1.1.1:15153
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A vrf-target target:64600:15153
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A vrf-import imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A vrf-export exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term import-redes-privadas from community VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term import-gestion then accept
+set policy-options policy-statement imp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term default-reject then reject
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-redes-privadas then community add VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A term default-reject then reject
+set policy-options community VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A members target:64600:15153
+
+set interfaces ae4 unit 803 description "VPNV4-BANCO_GALICIA-5Mbps"
+set interfaces ae4 unit 803 vlan-id 803
+set interfaces ae4 unit 803 family inet address 10.104.168.65/30
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A interface ae4.803
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A protocols bgp group CPE-65030 type external
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A protocols bgp group CPE-65030 description "VPNV4-AV_COLON_ALT:503"
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A protocols bgp group CPE-65030 peer-as 65030
+set routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A protocols bgp group CPE-65030 neighbor 10.104.168.66
+
+set routing-instances VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL route-distinguisher 1.1.1.1:15052
+set routing-instances VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL vrf-target target:64600:15052
+set routing-instances VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL vrf-import imp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL
+set routing-instances VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL vrf-export exp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL
+set policy-options policy-statement imp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term import-redes-privadas from community VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL
+set policy-options policy-statement imp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term import-gestion then accept
+set policy-options policy-statement imp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term default-reject then reject
+set policy-options policy-statement exp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term export-redes-privadas then community add VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL
+set policy-options policy-statement exp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL term default-reject then reject
+set policy-options community VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL members target:64600:15052
+
+set interfaces ae3 unit 800 description "FCORP-VPN-30536259194-ORGANIZACIN_COORDINADORA_ARGENTINA_SRL-122994050-10Mbps"
+set interfaces ae3 unit 800 vlan-id 800
+set interfaces ae3 unit 800 family inet address 10.104.168.1/30
+set routing-instances VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL interface ae3.800
+set routing-instances VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL protocols bgp group CPE-65025 type external
+set routing-instances VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL protocols bgp group CPE-65025 description "VRF-FCORP-122994050-PUEYRREDON /ALT/ 262-ROA1.BBO1"
+set routing-instances VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL protocols bgp group CPE-65025 peer-as 65025
+set routing-instances VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL protocols bgp group CPE-65025 neighbor 10.104.168.2
+
+set routing-instances VRF-ICBC-STANDARBANK route-distinguisher 1.1.1.1:15038
+set routing-instances VRF-ICBC-STANDARBANK vrf-target target:64600:15038
+set routing-instances VRF-ICBC-STANDARBANK vrf-import imp-VRF-ICBC-STANDARBANK
+set routing-instances VRF-ICBC-STANDARBANK vrf-export exp-VRF-ICBC-STANDARBANK
+set policy-options policy-statement imp-VRF-ICBC-STANDARBANK term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-ICBC-STANDARBANK term import-redes-privadas from community VRF-ICBC-STANDARBANK
+set policy-options policy-statement imp-VRF-ICBC-STANDARBANK term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-ICBC-STANDARBANK term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-ICBC-STANDARBANK term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-ICBC-STANDARBANK term import-gestion then accept
+set policy-options policy-statement imp-VRF-ICBC-STANDARBANK term default-reject then reject
+set policy-options policy-statement exp-VRF-ICBC-STANDARBANK term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-ICBC-STANDARBANK term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-ICBC-STANDARBANK term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-ICBC-STANDARBANK term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-ICBC-STANDARBANK term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-ICBC-STANDARBANK term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-ICBC-STANDARBANK term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-ICBC-STANDARBANK term export-redes-privadas then community add VRF-ICBC-STANDARBANK
+set policy-options policy-statement exp-VRF-ICBC-STANDARBANK term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-ICBC-STANDARBANK term default-reject then reject
+set policy-options community VRF-ICBC-STANDARBANK members target:64600:15038
+
+set interfaces ae3 unit 801 description "FCORP-VPN-30709447846-ICBC_SA-98664163-4Mbps"
+set interfaces ae3 unit 801 vlan-id 801
+set interfaces ae3 unit 801 family inet address 10.104.64.157/30
+set routing-instances VRF-ICBC-STANDARBANK interface ae3.801
+set routing-instances VRF-ICBC-STANDARBANK protocols bgp group CPE-65081 type external
+set routing-instances VRF-ICBC-STANDARBANK protocols bgp group CPE-65081 description "VRF-FCORP-98664163-CHICLANA /ALT/ 39-ROA1.BBO1"
+set routing-instances VRF-ICBC-STANDARBANK protocols bgp group CPE-65081 peer-as 65081
+set routing-instances VRF-ICBC-STANDARBANK protocols bgp group CPE-65081 neighbor 10.104.64.158
+
+set routing-instances VRF-YPF-SA route-distinguisher 1.1.1.1:15023
+set routing-instances VRF-YPF-SA vrf-target target:64600:15023
+set routing-instances VRF-YPF-SA vrf-import imp-VRF-YPF-SA
+set routing-instances VRF-YPF-SA vrf-export exp-VRF-YPF-SA
+set policy-options policy-statement imp-VRF-YPF-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-YPF-SA term import-redes-privadas from community VRF-YPF-SA
+set policy-options policy-statement imp-VRF-YPF-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-YPF-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-YPF-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-YPF-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-YPF-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-YPF-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-YPF-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-YPF-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-YPF-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-YPF-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-YPF-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-YPF-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-YPF-SA term export-redes-privadas then community add VRF-YPF-SA
+set policy-options policy-statement exp-VRF-YPF-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-YPF-SA term default-reject then reject
+set policy-options community VRF-YPF-SA members target:64600:15023
+
+set interfaces ae3 unit 802 description "FCORP-VPN-30546689979-YPF_SA-103991354-2Mbps"
+set interfaces ae3 unit 802 vlan-id 802
+set interfaces ae3 unit 802 family inet address 10.104.64.173/30
+set routing-instances VRF-YPF-SA interface ae3.802
+set routing-instances VRF-YPF-SA protocols bgp group CPE-65012 type external
+set routing-instances VRF-YPF-SA protocols bgp group CPE-65012 description "VRF-FCORP-103991354-FALUCHO ,AV. /ALT/ 7-ROA1.BBO1"
+set routing-instances VRF-YPF-SA protocols bgp group CPE-65012 peer-as 65012
+set routing-instances VRF-YPF-SA protocols bgp group CPE-65012 neighbor 10.104.64.174
+
+set routing-instances VRF-BANCO-PATAGONIA-SA route-distinguisher 1.1.1.1:15014
+set routing-instances VRF-BANCO-PATAGONIA-SA vrf-target target:64600:15014
+set routing-instances VRF-BANCO-PATAGONIA-SA vrf-import imp-VRF-BANCO-PATAGONIA-SA
+set routing-instances VRF-BANCO-PATAGONIA-SA vrf-export exp-VRF-BANCO-PATAGONIA-SA
+set policy-options policy-statement imp-VRF-BANCO-PATAGONIA-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-BANCO-PATAGONIA-SA term import-redes-privadas from community VRF-BANCO-PATAGONIA-SA
+set policy-options policy-statement imp-VRF-BANCO-PATAGONIA-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-BANCO-PATAGONIA-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-BANCO-PATAGONIA-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-BANCO-PATAGONIA-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-BANCO-PATAGONIA-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-BANCO-PATAGONIA-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-BANCO-PATAGONIA-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-BANCO-PATAGONIA-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-BANCO-PATAGONIA-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-BANCO-PATAGONIA-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-BANCO-PATAGONIA-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-BANCO-PATAGONIA-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-BANCO-PATAGONIA-SA term export-redes-privadas then community add VRF-BANCO-PATAGONIA-SA
+set policy-options policy-statement exp-VRF-BANCO-PATAGONIA-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-BANCO-PATAGONIA-SA term default-reject then reject
+set policy-options community VRF-BANCO-PATAGONIA-SA members target:64600:15014
+
+set interfaces ae3 unit 803 description "FCORP-VPN-30500006613-BANCO_PATAGONIA_SA-105618141-1Mbps"
+set interfaces ae3 unit 803 vlan-id 803
+set interfaces ae3 unit 803 family inet address 10.104.64.181/30
+set routing-instances VRF-BANCO-PATAGONIA-SA interface ae3.803
+set routing-instances VRF-BANCO-PATAGONIA-SA protocols bgp group CPE-65043 type external
+set routing-instances VRF-BANCO-PATAGONIA-SA protocols bgp group CPE-65043 description "VRF-FCORP-105618141-11 DE ABRIL /ALT/ 401-ROA1.BBO1"
+set routing-instances VRF-BANCO-PATAGONIA-SA protocols bgp group CPE-65043 peer-as 65043
+set routing-instances VRF-BANCO-PATAGONIA-SA protocols bgp group CPE-65043 neighbor 10.104.64.182
+
+set routing-instances VRF-FRAVEGA-SACIEI route-distinguisher 1.1.1.1:15018
+set routing-instances VRF-FRAVEGA-SACIEI vrf-target target:64600:15018
+set routing-instances VRF-FRAVEGA-SACIEI vrf-import imp-VRF-FRAVEGA-SACIEI
+set routing-instances VRF-FRAVEGA-SACIEI vrf-export exp-VRF-FRAVEGA-SACIEI
+set policy-options policy-statement imp-VRF-FRAVEGA-SACIEI term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-FRAVEGA-SACIEI term import-redes-privadas from community VRF-FRAVEGA-SACIEI
+set policy-options policy-statement imp-VRF-FRAVEGA-SACIEI term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-FRAVEGA-SACIEI term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-FRAVEGA-SACIEI term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-FRAVEGA-SACIEI term import-gestion then accept
+set policy-options policy-statement imp-VRF-FRAVEGA-SACIEI term default-reject then reject
+set policy-options policy-statement exp-VRF-FRAVEGA-SACIEI term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-FRAVEGA-SACIEI term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FRAVEGA-SACIEI term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FRAVEGA-SACIEI term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-FRAVEGA-SACIEI term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-FRAVEGA-SACIEI term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-FRAVEGA-SACIEI term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-FRAVEGA-SACIEI term export-redes-privadas then community add VRF-FRAVEGA-SACIEI
+set policy-options policy-statement exp-VRF-FRAVEGA-SACIEI term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-FRAVEGA-SACIEI term default-reject then reject
+set policy-options community VRF-FRAVEGA-SACIEI members target:64600:15018
+
+set interfaces ae3 unit 804 description "FCORP-VPN-30526874249-FRAVEGA_SACIEI-105540875-10Mbps"
+set interfaces ae3 unit 804 vlan-id 804
+set interfaces ae3 unit 804 family inet address 10.104.64.185/30
+set routing-instances VRF-FRAVEGA-SACIEI interface ae3.804
+set routing-instances VRF-FRAVEGA-SACIEI protocols bgp group CPE-65052 type external
+set routing-instances VRF-FRAVEGA-SACIEI protocols bgp group CPE-65052 description "VRF-FCORP-105540875-DONADO /ALT/ 65-ROA1.BBO1"
+set routing-instances VRF-FRAVEGA-SACIEI protocols bgp group CPE-65052 peer-as 65052
+set routing-instances VRF-FRAVEGA-SACIEI protocols bgp group CPE-65052 neighbor 10.104.64.186
+
+set routing-instances VRF-FCORP-IOMA route-distinguisher 1.1.1.1:15160
+set routing-instances VRF-FCORP-IOMA vrf-target target:64600:15160
+set routing-instances VRF-FCORP-IOMA vrf-import imp-VRF-FCORP-IOMA
+set routing-instances VRF-FCORP-IOMA vrf-export exp-VRF-FCORP-IOMA
+set policy-options policy-statement imp-VRF-FCORP-IOMA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-IOMA term import-redes-privadas from community VRF-FCORP-IOMA
+set policy-options policy-statement imp-VRF-FCORP-IOMA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-FCORP-IOMA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-IOMA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-FCORP-IOMA term import-gestion then accept
+set policy-options policy-statement imp-VRF-FCORP-IOMA term default-reject then reject
+set policy-options policy-statement exp-VRF-FCORP-IOMA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-IOMA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-IOMA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-IOMA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-FCORP-IOMA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-FCORP-IOMA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-FCORP-IOMA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-IOMA term export-redes-privadas then community add VRF-FCORP-IOMA
+set policy-options policy-statement exp-VRF-FCORP-IOMA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-FCORP-IOMA term default-reject then reject
+set policy-options community VRF-FCORP-IOMA members target:64600:15160
+
+set interfaces ae3 unit 805 description "FCORP-VPN-30541027218-FEDERACION_BIOQUIMICA_DE_LA_PROVINCIA_DE_BUENOS_AIRES-106741363-10Mbps"
+set interfaces ae3 unit 805 vlan-id 805
+set interfaces ae3 unit 805 family inet address 10.104.64.213/30
+set routing-instances VRF-FCORP-IOMA interface ae3.805
+set routing-instances VRF-FCORP-IOMA protocols bgp group CPE-65017 type external
+set routing-instances VRF-FCORP-IOMA protocols bgp group CPE-65017 description "VRF-FCORP-106741363-SOLER /ALT/ 308-ROA1.BBO1"
+set routing-instances VRF-FCORP-IOMA protocols bgp group CPE-65017 peer-as 65017
+set routing-instances VRF-FCORP-IOMA protocols bgp group CPE-65017 neighbor 10.104.64.214
+
+set routing-instances VRF-FCORP-DROGUERIA-DEL-SUD-SA route-distinguisher 1.1.1.1:15119
+set routing-instances VRF-FCORP-DROGUERIA-DEL-SUD-SA vrf-target target:64600:15119
+set routing-instances VRF-FCORP-DROGUERIA-DEL-SUD-SA vrf-import imp-VRF-FCORP-DROGUERIA-DEL-SUD-SA
+set routing-instances VRF-FCORP-DROGUERIA-DEL-SUD-SA vrf-export exp-VRF-FCORP-DROGUERIA-DEL-SUD-SA
+set policy-options policy-statement imp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term import-redes-privadas from community VRF-FCORP-DROGUERIA-DEL-SUD-SA
+set policy-options policy-statement imp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term export-redes-privadas then community add VRF-FCORP-DROGUERIA-DEL-SUD-SA
+set policy-options policy-statement exp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-FCORP-DROGUERIA-DEL-SUD-SA term default-reject then reject
+set policy-options community VRF-FCORP-DROGUERIA-DEL-SUD-SA members target:64600:15119
+
+set interfaces ae3 unit 806 description "FCORP-VPN-30538880627-DROGUERIA_DEL_SUD_SA-106530245-9Mbps"
+set interfaces ae3 unit 806 vlan-id 806
+set interfaces ae3 unit 806 family inet address 10.104.64.221/30
+set routing-instances VRF-FCORP-DROGUERIA-DEL-SUD-SA interface ae3.806
+set routing-instances VRF-FCORP-DROGUERIA-DEL-SUD-SA protocols bgp group CPE-65007 type external
+set routing-instances VRF-FCORP-DROGUERIA-DEL-SUD-SA protocols bgp group CPE-65007 description "VRF-FCORP-106530245-FRANCIA /ALT/ 1506-ROA1.BBO1"
+set routing-instances VRF-FCORP-DROGUERIA-DEL-SUD-SA protocols bgp group CPE-65007 peer-as 65007
+set routing-instances VRF-FCORP-DROGUERIA-DEL-SUD-SA protocols bgp group CPE-65007 neighbor 10.104.64.222
+
+set routing-instances VRF-NSS-SA-LIBERTADOR-4101 route-distinguisher 1.1.1.1:15064
+set routing-instances VRF-NSS-SA-LIBERTADOR-4101 vrf-target target:64600:15064
+set routing-instances VRF-NSS-SA-LIBERTADOR-4101 vrf-import imp-VRF-NSS-SA-LIBERTADOR-4101
+set routing-instances VRF-NSS-SA-LIBERTADOR-4101 vrf-export exp-VRF-NSS-SA-LIBERTADOR-4101
+set policy-options policy-statement imp-VRF-NSS-SA-LIBERTADOR-4101 term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-NSS-SA-LIBERTADOR-4101 term import-redes-privadas from community VRF-NSS-SA-LIBERTADOR-4101
+set policy-options policy-statement imp-VRF-NSS-SA-LIBERTADOR-4101 term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-NSS-SA-LIBERTADOR-4101 term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-NSS-SA-LIBERTADOR-4101 term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-NSS-SA-LIBERTADOR-4101 term import-gestion then accept
+set policy-options policy-statement imp-VRF-NSS-SA-LIBERTADOR-4101 term default-reject then reject
+set policy-options policy-statement exp-VRF-NSS-SA-LIBERTADOR-4101 term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-NSS-SA-LIBERTADOR-4101 term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-NSS-SA-LIBERTADOR-4101 term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-NSS-SA-LIBERTADOR-4101 term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-NSS-SA-LIBERTADOR-4101 term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-NSS-SA-LIBERTADOR-4101 term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-NSS-SA-LIBERTADOR-4101 term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-NSS-SA-LIBERTADOR-4101 term export-redes-privadas then community add VRF-NSS-SA-LIBERTADOR-4101
+set policy-options policy-statement exp-VRF-NSS-SA-LIBERTADOR-4101 term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-NSS-SA-LIBERTADOR-4101 term default-reject then reject
+set policy-options community VRF-NSS-SA-LIBERTADOR-4101 members target:64600:15064
+
+set interfaces ae3 unit 807 description "FCORP-VPN-30702652975-NSS_SA-122575355-2Mbps"
+set interfaces ae3 unit 807 vlan-id 807
+set interfaces ae3 unit 807 family inet address 10.104.168.5/30
+set routing-instances VRF-NSS-SA-LIBERTADOR-4101 interface ae3.807
+set routing-instances VRF-NSS-SA-LIBERTADOR-4101 protocols bgp group CPE-65033 type external
+set routing-instances VRF-NSS-SA-LIBERTADOR-4101 protocols bgp group CPE-65033 description "VRF-FCORP-122575355-CHICLANA /ALT/ 220-ROA1.BBO1"
+set routing-instances VRF-NSS-SA-LIBERTADOR-4101 protocols bgp group CPE-65033 peer-as 65033
+set routing-instances VRF-NSS-SA-LIBERTADOR-4101 protocols bgp group CPE-65033 neighbor 10.104.168.6
+
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA route-distinguisher 1.1.1.1:15015
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA vrf-target target:64600:15015
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA vrf-import imp-VRF-ARCOS-DORADOS-ARGENTINA-SA
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA vrf-export exp-VRF-ARCOS-DORADOS-ARGENTINA-SA
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term import-redes-privadas from community VRF-ARCOS-DORADOS-ARGENTINA-SA
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-redes-privadas then community add VRF-ARCOS-DORADOS-ARGENTINA-SA
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term default-reject then reject
+set policy-options community VRF-ARCOS-DORADOS-ARGENTINA-SA members target:64600:15015
+
+set interfaces ae3 unit 809 description "FCORP-VPN-30610252334-ARCOS_DORADOS_ARGENTINA_SA-103104913-2Mbps"
+set interfaces ae3 unit 809 vlan-id 809
+set interfaces ae3 unit 809 family inet address 10.104.64.237/30
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA interface ae3.809
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA protocols bgp group CPE-65138 type external
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA protocols bgp group CPE-65138 description "VRF-FCORP-103104913-BROWN /ALT/ 226-ROA1.BBO1"
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA protocols bgp group CPE-65138 peer-as 65138
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA protocols bgp group CPE-65138 neighbor 10.104.64.238
+
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA route-distinguisher 1.1.1.1:15015
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA vrf-target target:64600:15015
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA vrf-import imp-VRF-ARCOS-DORADOS-ARGENTINA-SA
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA vrf-export exp-VRF-ARCOS-DORADOS-ARGENTINA-SA
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term import-redes-privadas from protocol bgp
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term import-redes-privadas from community VRF-ARCOS-DORADOS-ARGENTINA-SA
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term import-redes-privadas then accept
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term import-gestion from protocol bgp
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term import-gestion from community GESTION-CPE-ESTATICAS
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term import-gestion then accept
+set policy-options policy-statement imp-VRF-ARCOS-DORADOS-ARGENTINA-SA term default-reject then reject
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-loopbacks-cpe from protocol bgp
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.106.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.107.248.0/21 upto /32
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-loopbacks-cpe from route-filter 10.109.240.0/20 upto /32
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-loopbacks-cpe then community add GESTION-CPE-VPN
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-loopbacks-cpe then accept
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-redes-privadas from protocol bgp
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-redes-privadas then community add VRF-ARCOS-DORADOS-ARGENTINA-SA
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term export-redes-privadas then accept
+set policy-options policy-statement exp-VRF-ARCOS-DORADOS-ARGENTINA-SA term default-reject then reject
+set policy-options community VRF-ARCOS-DORADOS-ARGENTINA-SA members target:64600:15015
+
+set interfaces ae3 unit 812 description "FCORP-VPN-30610252334-ARCOS_DORADOS_ARGENTINA_SA-103155525-10Mbps"
+set interfaces ae3 unit 812 vlan-id 812
+set interfaces ae3 unit 812 family inet address 10.104.64.253/30
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA interface ae3.812
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA protocols bgp group CPE-65134 type external
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA protocols bgp group CPE-65134 description "VRF-FCORP-103155525-SARMIENTO /ALT/ 2200 /DE/ 210-ROA1.BBO1"
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA protocols bgp group CPE-65134 peer-as 65134
+set routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA protocols bgp group CPE-65134 neighbor 10.104.64.254
+
+set routing-instances VPLS-331-LEVEL-3 route-distinguisher 1.1.1.1:25007
+set routing-instances VPLS-331-LEVEL-3 vrf-target target:64600:25007
+
+set interfaces ae1 unit 331 description "CLI_L2:IRS-GLOBAL_CROSSING_LEVEL3"
+set interfaces ae1 unit 331 encapsulation vlan-vpls
+set interfaces ae1 unit 331 vlan-id 331
+set routing-instances VPLS-331-LEVEL-3 interface ae1.331
+set routing-instances VPLS-331-LEVEL-3 protocols vpls site SITE interface ae1.331
+
+set routing-instances VPLS-FCORP-223727 route-distinguisher 1.1.1.1:25327
+set routing-instances VPLS-FCORP-223727 vrf-target target:64600:25327
+
+set interfaces ae2 unit 3727 description "FCORP-Transmision_de_Datos-30638203797-BT_LATAM_ARGENTINA_SA-86864161-2Mbps"
+set interfaces ae2 unit 3727 encapsulation vlan-vpls
+set interfaces ae2 unit 3727 vlan-id 3727
+set routing-instances VPLS-FCORP-223727 interface ae2.3727
+set routing-instances VPLS-FCORP-223727 protocols vpls site SITE interface ae2.3727
+
+set routing-instances VPLS-FCORP-335052 route-distinguisher 1.1.1.1:25305
+set routing-instances VPLS-FCORP-335052 vrf-target target:64600:25305
+
+set interfaces ae4 unit 399 description "FCORP-Transmision-de-Datos-30626747171-LEVEL3_CARREFOUR-138545383-1Mbps"
+set interfaces ae4 unit 399 encapsulation vlan-vpls
+set interfaces ae4 unit 399 vlan-id 399
+set routing-instances VPLS-FCORP-335052 interface ae4.399
+set routing-instances VPLS-FCORP-335052 protocols vpls site SITE interface ae4.399
+
+set routing-instances VPLS-FCORP-335043 route-distinguisher 1.1.1.1:25326
+set routing-instances VPLS-FCORP-335043 vrf-target target:64600:25326
+
+set interfaces ae3 unit 399 description "FCORP-Transmision de Datos-MEDIFE_AC-10Mbps"
+set interfaces ae3 unit 399 encapsulation vlan-vpls
+set interfaces ae3 unit 399 vlan-id 399
+set routing-instances VPLS-FCORP-335043 interface ae3.399
+set routing-instances VPLS-FCORP-335043 protocols vpls site SITE interface ae3.399
+

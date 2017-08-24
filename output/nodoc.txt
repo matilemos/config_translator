@@ -1,0 +1,272 @@
+delete interfaces ae2.301
+delete routing-options static route 181.30.1.80/29 next-hop 10.104.64.42
+
+delete interfaces ae2.302
+delete routing-options static route 181.30.102.160/27 next-hop 10.104.168.34
+
+delete interfaces ae2.303
+delete routing-options static route 200.42.69.56/29 next-hop 10.104.64.10
+
+delete interfaces ae2.304
+
+delete interfaces ae2.305
+delete routing-options static route 181.30.107.64/29 next-hop 10.104.168.58
+
+delete interfaces ae2.306
+delete routing-options static route 181.30.107.56/29 next-hop 10.104.168.54
+
+delete interfaces ae2.308
+
+delete interfaces ae2.309
+
+delete interfaces ae2.310
+delete routing-options static route 200.127.150.152/29 next-hop 10.104.64.130
+
+delete interfaces ae2.311
+delete routing-options static route 181.30.8.240/29 next-hop 10.104.64.202
+
+delete interfaces ae2.340
+
+delete interfaces ae2.356
+
+delete interfaces ae2.378
+
+delete interfaces ae2.401
+delete routing-options static route 200.127.155.40/29 next-hop 10.104.64.66
+
+delete interfaces ae3.300
+delete routing-options static route 181.30.20.176/29 next-hop 10.104.64.94
+
+delete interfaces ae3.301
+delete routing-options static route 181.30.12.248/29 next-hop 10.104.64.98
+
+delete interfaces ae3.302
+delete routing-options static route 181.30.24.136/29 next-hop 10.104.64.122
+
+delete interfaces ae3.303
+delete routing-options static route 181.30.43.112/29 next-hop 10.104.64.142
+
+delete interfaces ae3.304
+
+delete interfaces ae3.305
+
+delete interfaces ae3.306
+delete routing-options static route 181.30.110.64/29 next-hop 10.104.168.62
+
+delete interfaces ae3.310
+delete routing-options static route 181.30.51.64/29 next-hop 10.104.194.38
+
+delete interfaces ae3.311
+delete routing-options static route 181.30.97.56/29 next-hop 10.104.168.30
+
+delete interfaces ae3.314
+delete routing-options static route 181.30.8.248/29 next-hop 10.104.64.162
+
+delete interfaces ae4.300
+delete routing-options static route 181.30.96.40/29 next-hop 10.104.168.18
+
+delete interfaces ae4.301
+delete routing-options static route 181.30.100.160/29 next-hop 10.104.168.26
+
+delete interfaces ae4.302
+delete routing-options static route 181.30.105.128/29 next-hop 10.104.168.46
+
+delete interfaces ae6.300
+delete routing-options static route 181.30.95.128/29 next-hop 10.104.168.14
+
+delete interfaces ae6.301
+delete routing-options static route 181.30.54.40/29 next-hop 10.104.64.170
+
+delete interfaces ae6.302
+delete routing-options static route 181.30.54.168/29 next-hop 10.104.64.178
+
+delete interfaces ae6.303
+
+delete interfaces ae6.304
+delete routing-options static route 181.30.63.64/29 next-hop 10.104.64.206
+
+delete interfaces ae6.305
+delete routing-options static route 181.30.65.136/29 next-hop 10.104.64.210
+
+delete interfaces ae6.306
+
+delete interfaces ae6.307
+delete routing-options static route 181.30.66.240/29 next-hop 10.104.64.226
+
+delete interfaces ae6.308
+
+delete interfaces ae6.309
+
+delete interfaces ae6.310
+
+delete interfaces ae6.311
+delete routing-options static route 181.30.88.240/29 next-hop 10.104.168.10
+
+delete interfaces ae6.312
+delete routing-options static route 181.30.190.184/29 next-hop 10.104.168.50
+
+delete interfaces ae6.320
+
+delete interfaces ae6.351
+delete routing-options static route 200.127.146.64/29 next-hop 10.104.64.62
+
+delete interfaces ae2.307
+delete routing-instances VRF-BANCO-CREDICOOP interface ae2.307
+delete routing-instances VRF-BANCO-CREDICOOP protocols bgp group CTE-65002
+
+delete interfaces ae2.806
+delete routing-instances VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA interface ae2.806
+delete routing-instances VRF-ZURICH-ARGENTINA-COMPAIA-DE-SEGUROS-SA protocols bgp group CTE-65005
+
+delete interfaces ae2.816
+delete routing-instances VRF-CENCOSUD-SA interface ae2.816
+delete routing-instances VRF-CENCOSUD-SA protocols bgp group CTE-64704
+
+delete interfaces ae2.817
+delete routing-instances VRF-CENCOSUD-SA interface ae2.817
+delete routing-instances VRF-CENCOSUD-SA protocols bgp group CTE-64705
+
+delete interfaces ae2.844
+delete routing-instances VRF-UTN interface ae2.844
+delete routing-instances VRF-UTN protocols bgp group CTE-65010
+
+delete interfaces ae2.846
+delete routing-instances VRF-FCORP-BOLDT-GAMING-SA interface ae2.846
+delete routing-instances VRF-FCORP-BOLDT-GAMING-SA protocols bgp group CTE-65005
+
+delete interfaces ae2.851
+delete routing-instances VRF-PETROBRAS-ENERGIA-SA interface ae2.851
+delete routing-instances VRF-PETROBRAS-ENERGIA-SA protocols bgp group CTE-65002
+
+delete interfaces ae2.888
+delete routing-instances VRF-FCORP-MONROE-AMERICANA interface ae2.888
+delete routing-instances VRF-FCORP-MONROE-AMERICANA protocols bgp group CTE-65001
+
+delete interfaces ae2.891
+delete routing-instances VRF-CAJA-DE-SEGUROS-SA-2 interface ae2.891
+delete routing-instances VRF-CAJA-DE-SEGUROS-SA-2 protocols bgp group CTE-65012
+
+delete interfaces ae2.893
+delete routing-instances VRF-RENAULT-ARGENTINA-SA interface ae2.893
+delete routing-instances VRF-RENAULT-ARGENTINA-SA protocols bgp group CTE-65020
+
+delete interfaces ae3.800
+delete routing-instances VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA interface ae3.800
+delete routing-instances VRF-FCORP-SEGUROS-BERNARDINO-RIVADAVIA protocols bgp group CTE-65004
+
+delete interfaces ae3.801
+delete routing-instances VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A interface ae3.801
+delete routing-instances VRF-FCORP-INDUSTRIAS-PUGLIESE-S_A protocols bgp group CTE-65001
+
+delete interfaces ae3.802
+delete routing-instances VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO interface ae3.802
+delete routing-instances VRF-FCORP-SUPERMERCADOS-MAYORISTAS-MAKRO protocols bgp group CTE-65005
+
+delete interfaces ae3.803
+delete routing-instances VRF-SECURITAS.ARGENTINA-SA interface ae3.803
+delete routing-instances VRF-SECURITAS.ARGENTINA-SA protocols bgp group CTE-65006
+
+delete interfaces ae3.804
+delete routing-instances VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA interface ae3.804
+delete routing-instances VRF-ROYAL-SUN-ALLIANCE-SEGUROS-ARG-SA protocols bgp group CTE-65007
+
+delete interfaces ae3.805
+delete routing-instances VRF-CPS-COMUNICACIONES-SA-3 interface ae3.805
+delete routing-instances VRF-CPS-COMUNICACIONES-SA-3 protocols bgp group CTE-65008
+
+delete interfaces ae3.806
+delete routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A interface ae3.806
+delete routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A protocols bgp group CTE-65007
+
+delete interfaces ae3.807
+delete routing-instances VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA interface ae3.807
+delete routing-instances VRF-FCORP-ORBIS-COMPANIA-DE-SEGUROS-SA protocols bgp group CTE-65003
+
+delete interfaces ae3.809
+delete routing-instances VRF-CPS-COMUNICACIONES-SA-3 interface ae3.809
+delete routing-instances VRF-CPS-COMUNICACIONES-SA-3 protocols bgp group CTE-65013
+
+delete interfaces ae3.810
+delete routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET interface ae3.810
+delete routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET protocols bgp group CTE-65079
+
+delete interfaces ae3.811
+delete routing-instances VRF-AXION-ENERGY-ARGENTINA-SA interface ae3.811
+delete routing-instances VRF-AXION-ENERGY-ARGENTINA-SA protocols bgp group CTE-65079
+
+delete interfaces ae3.812
+delete routing-instances VRF-AXION-ENERGY-ARGENTINA-SA interface ae3.812
+delete routing-instances VRF-AXION-ENERGY-ARGENTINA-SA protocols bgp group CTE-65080
+
+delete interfaces ae3.813
+delete routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET interface ae3.813
+delete routing-instances VRF-AXION-ENERGY-ARGENTINA-INTERNET protocols bgp group CTE-65080
+
+delete interfaces ae4.800
+delete routing-instances VRF-CORREO-ANDREANI-SA interface ae4.800
+delete routing-instances VRF-CORREO-ANDREANI-SA protocols bgp group CTE-65045
+
+delete interfaces ae4.801
+delete routing-instances VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 interface ae4.801
+delete routing-instances VRF-COMPANIA-DE-SEGUROS-LA-MERCANTIL-ANDINA-SA-2 protocols bgp group CTE-65011
+
+delete interfaces ae4.802
+delete routing-instances VRF-BANCO-CREDICOOP interface ae4.802
+delete routing-instances VRF-BANCO-CREDICOOP protocols bgp group CTE-65012
+
+delete interfaces ae4.803
+delete routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A interface ae4.803
+delete routing-instances VRF-FCORP-BANCO-DE-GALICIA-Y-BUENOS-AIRES-S-A protocols bgp group CTE-65030
+
+delete interfaces ae6.800
+delete routing-instances VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL interface ae6.800
+delete routing-instances VRF-ORGANIZACION-COORDINADORA-ARGENTINA-SRL protocols bgp group CTE-65025
+
+delete interfaces ae6.801
+delete routing-instances VRF-ICBC-STANDARBANK interface ae6.801
+delete routing-instances VRF-ICBC-STANDARBANK protocols bgp group CTE-65081
+
+delete interfaces ae6.802
+delete routing-instances VRF-YPF-SA interface ae6.802
+delete routing-instances VRF-YPF-SA protocols bgp group CTE-65012
+
+delete interfaces ae6.803
+delete routing-instances VRF-BANCO-PATAGONIA-SA interface ae6.803
+delete routing-instances VRF-BANCO-PATAGONIA-SA protocols bgp group CTE-65043
+
+delete interfaces ae6.804
+delete routing-instances VRF-FRAVEGA-SACIEI interface ae6.804
+delete routing-instances VRF-FRAVEGA-SACIEI protocols bgp group CTE-65052
+
+delete interfaces ae6.805
+delete routing-instances VRF-FCORP-IOMA interface ae6.805
+delete routing-instances VRF-FCORP-IOMA protocols bgp group CTE-65017
+
+delete interfaces ae6.806
+delete routing-instances VRF-FCORP-DROGUERIA-DEL-SUD-SA interface ae6.806
+delete routing-instances VRF-FCORP-DROGUERIA-DEL-SUD-SA protocols bgp group CTE-65007
+
+delete interfaces ae6.807
+delete routing-instances VRF-NSS-SA-LIBERTADOR-4101 interface ae6.807
+delete routing-instances VRF-NSS-SA-LIBERTADOR-4101 protocols bgp group CTE-65033
+
+delete interfaces ae6.809
+delete routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA interface ae6.809
+delete routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA protocols bgp group CTE-65138
+
+delete interfaces ae6.812
+delete routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA interface ae6.812
+delete routing-instances VRF-ARCOS-DORADOS-ARGENTINA-SA protocols bgp group CTE-65134
+
+delete interfaces ae2.331
+delete routing-instances VPLS-331-LEVEL-3 interface ae2.331
+
+delete interfaces ae3.3727
+delete routing-instances VPLS-FCORP-223727 interface ae3.3727
+
+delete interfaces ae4.399
+delete routing-instances VPLS-FCORP-335052 interface ae4.399
+
+delete interfaces ae6.399
+delete routing-instances VPLS-FCORP-335043 interface ae6.399
+
